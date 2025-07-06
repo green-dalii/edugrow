@@ -68,7 +68,7 @@ type Props = {
 const { classes } = Astro.props
 ---
 
-<Section padding="bottom" classes={classes}>
+<Section padding="none" classes={classes}>
 	<!-- <Row>
 		<Col span="12" align="center">
 			<h2 class="!mb-6 text-base font-normal text-neutral-400 dark:text-neutral-600">
@@ -76,11 +76,11 @@ const { classes } = Astro.props
 			</h2></Col
 		>
 	</Row> -->
-	<Row flex classes="!flex-row !gap-16">
+	<Row flex classes="!flex-row !gap-y-8 !gap-x-10 md:!gap-x-14 md:!gap-y-12 lg:!gap-x-20 lg:!gap-y-14">
 		{
 			images.map((item) => (
 				<Col>
-					<Image src={item.image} alt={item.alt} />
+					<Image src={item.image} alt={item.alt} class="h-7 w-auto md:h-10 lg:h-12" />
 				</Col>
 			))
 		}
