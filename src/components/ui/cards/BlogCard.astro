@@ -1,0 +1,87 @@
+---
+// Blog Card
+// ------------
+// Description: The blog card component
+// Properties:
+// - Title: the title of the card
+// - Subtitle: the subtitle of the card
+// - Image: the main image of the card
+// - Icon: the icon of the card
+// - Link: The link to the blog post
+// - classes: extra classes
+// - Tags: the tags of the blog post
+// Reference: https://wind-ui.com/components/cards/
+
+// Components
+// - UI
+import { Image } from 'astro:assets'
+import Card from './partials/Card.astro'
+import CardBody from './partials/CardBody.astro'
+import Badge from '../Badge.astro'
+
+// Props
+type Props = {
+	title?: string
+	subtitle?: string
+	description?: string
+	image?: any
+	link?: string
+	classes?: string
+	tags?: string[]
+}
+const {
+	title = '',
+	subtitle,
+	description,
+	image,
+	link,
+	classes = '!shadow-none border border-neutral-100 dark:border-neutral-800',
+	tags
+} = Astro.props
+---
+
+<Card classes={classes}>
+	<a href={link}>
+		{image && (
+			// 检查image是否为字符串路径，如果是，则使用img标签，否则使用Image组件
+			typeof image === 'string' && image.startsWith('src/') ? (
+				<img src={image.replace('src/', '/')} alt={title} width="600" height="400" class="w-full h-auto object-cover" />
+			) : (
+				<Image src={image} alt={title} width={600} class="w-full h-auto object-cover" />
+			)
+		)}
+		<CardBody>
+			<h3 class="post-title">
+				{title}
+			</h3>
+			<h4 class="post-subtitle">{subtitle}</h4>
+			{description && (
+				<p class="mb-6 text-xs text-neutral-600 dark:text-neutral-300">
+					{description}
+				</p>
+			)}
+		</CardBody>
+	</a>
+
+	{
+		tags && (
+			<div class="post-tags">
+				{tags.map((tag: string) => (
+					<Badge type='primary' name={tag} link={`/blog/tags/` + tag} classes="capitalize" />
+				))}
+			</div>
+		)
+	}
+</Card>
+
+<style>
+	.post-title {
+		@apply mb-0 text-xl [&_a]:text-inherit;
+	}
+	.post-subtitle {
+		@apply mb-6 text-xs font-normal text-neutral-400 dark:text-neutral-400;
+	}
+	.post-tags {
+		@apply flex gap-2 border-t border-neutral-100 px-6 py-4 dark:border-neutral-800;
+	}
+</style>

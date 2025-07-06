@@ -1,0 +1,48 @@
+---
+// Blog Tag Page
+// ------------
+// Description: The blog tag page.
+
+// Components
+// - Layout
+import Layout from '../../../layouts/Layout.astro'
+// - UI
+import Hero from '../../../components/blocks/hero/PageHeader.astro'
+import BlogPosts from '../../../components/blocks/blog/BlogPosts.astro'
+
+// Data
+import { getCollection } from 'astro:content'
+export async function getStaticPaths() {
+	const allPosts = await getCollection('blog')
+	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())]
+
+	return uniqueTags.map((tag) => {
+		const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag))
+		return {
+			params: { tag },
+			props: { posts: filteredPosts }
+		}
+	})
+}
+const { tag } = Astro.params
+const { posts } = Astro.props
+
+// Content
+// - SEO
+const SEO = {
+	title: `予果予实 | ${tag}相关留学攻略`,
+	description:
+		`浏览予果予实关于${tag}的专业留学攻略，获取最新、最实用的留学规划建议和申请指导，助您顺利实现海外求学梦想。`
+}
+
+// - Page Header
+const header = {
+	title: `予果予实留学攻略 <br><strong>${tag}</strong> 专题`,
+	text: `探索与${tag}相关的专业留学指南，获取予果予实留学顾问团队的权威建议。`
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={header.title} text={header.text} />
+	<BlogPosts data={posts} />
+</Layout>

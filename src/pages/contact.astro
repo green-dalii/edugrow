@@ -1,0 +1,280 @@
+---
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - UI
+import Hero from '../components/blocks/hero/PageHeader.astro'
+import CTA from '../components/blocks/CTA/BasicDark.astro'
+import Section from '../components/ui/Section.astro'
+import Row from '../components/ui/Row.astro'
+import Col from '../components/ui/Col.astro'
+import Button from '../components/ui/Button.astro'
+import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
+
+// 导入图片资源
+import contactImage from '../assets/contact/assert1.jpg'
+import mapImage from '../assets/contact/map.webp'
+
+// Content
+// - SEO
+const SEO = {
+	title: '予果予实（EDUGROW）｜联系我们',
+	description:
+		'欢迎联系予果予实留学咨询机构，我们提供专业的留学规划和申请服务。通过微信、电话、邮件或亲临办公室，随时与我们取得联系。'
+}
+// - Page Header
+const header = {
+	title: '联系我们',
+	text: '无论您有任何留学相关问题，予果予实都随时为您提供专业支持和帮助。'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={header.title} text={header.text} />
+
+	<!-- 社交媒体和联系方式部分 -->
+	<Section id="contact-info" classes="py-16">
+		<Row>
+			<Col span="6" classes="relative">
+				<Image
+					src={contactImage}
+					alt="联系我们"
+					width={600}
+					class="mx-auto rounded-2xl lg:mx-0"
+					quality={90}
+				/>
+			</Col>
+			<Col span="6" classes="self-center lg:ml-6">
+				<div class="max-w-full">
+					<h2 class="mb-4 text-2xl lg:text-3xl">
+						<strong>联系我们</strong> 获取专业咨询
+					</h2>
+					<p class="mb-8 text-lg leading-relaxed">
+						无论您有任何留学相关问题，我们随时欢迎您通过以下方式与我们取得联系。
+					</p>
+					<div class="space-y-8">
+						<!-- 联系方式列表 -->
+						<div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-10">
+							<div class="">
+								<div class="mb-4 flex items-center">
+									<Icon
+										name="simple-icons:wechat"
+										class="mr-3 text-2xl text-primary-500"
+									/>
+									<h3 class="text-lg font-bold">微信咨询</h3>
+								</div>
+								<div class="flex flex-col items-center">
+									<Icon name="contact-qrcode" class="h-28 w-28" />
+									<div class="text-center mt-4">
+										<div class="text-xs">扫码添加留学小助手</div>
+                                        <div class="text-xs">获取一对一专业咨询</div>
+									</div>
+								</div>
+							</div>
+							<div class="">
+								<div class="mb-4 flex items-center">
+									<Icon
+										name="simple-icons:wechat"
+										class="mr-3 text-2xl text-primary-500"
+									/>
+									<h3 class="text-lg font-bold">关注公众号</h3>
+								</div>
+								<div class="flex flex-col items-center">
+									<Icon name="contact-qrcode" class="h-28 w-28" />
+									<div class="text-center mt-4">
+										<div class="text-xs">扫码关注予果予实</div>
+                                        <div class="text-xs">获取更多留学攻略</div>
+									</div>
+								</div>
+							</div>
+                            <!-- <div class="">
+								<div class="mb-4 flex items-center">
+									<Icon
+										name="fluent:call-24-filled"
+										class="mr-3 text-3xl text-primary-500"
+									/>
+									<h3 class="text-lg font-bold">来电咨询</h3>
+								</div>
+								<a href="tel:17792943576" class="text-base font-medium text-primary-500">177-9294-3576</a>
+							</div> -->
+							<div class="">
+								<div class="mb-4 flex items-center">
+									<Icon
+										name="simple-icons:maildotru"
+										class="mr-3 text-2xl text-primary-500"
+									/>
+									<h3 class="text-lg font-bold">邮件联系</h3>
+								</div>
+								<a href="mailto:hi@edugrow.cn" class="text-base font-medium text-primary-500">hi@edugrow.cn</a>
+							</div>
+						</div>
+						<!-- 社交媒体部分 -->
+						<!-- <div class="pt-8">
+							<h3 class="mb-6 text-xl font-bold">关注我们的社交媒体</h3>
+							<div class="grid grid-cols-2 gap-8">
+								<div class="flex flex-col items-center text-center">
+									<Icon name="contact-qrcode" class="mb-4 h-28 w-28" />
+									<h4 class="mb-2 text-base font-bold">微信公众号</h4>
+								</div>
+
+								<div class="flex flex-col items-center text-center">
+									<Icon name="contact-qrcode" class="mb-4 h-28 w-28" />
+									<h4 class="mb-2 text-base font-bold">小红书</h4>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- 办公地址部分 -->
+	<Section id='address' padding="both" classes="bg-primary-200 dark:bg-neutral-800">
+		<Row>
+			<Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+                <h2 class="text-pretty">我们随时欢迎您<strong>亲临予果予实</strong></h2>
+                <p class="pb-0 text-lg">
+                    与我们见面，了解更多关于予果予实的信息。
+                </p>
+            </Col>
+		</Row>
+		<Row>
+			<Col span="8" classes="mb-8 md:mb-0">
+				<!-- 地图容器 -->
+				<div
+					id="map-container"
+					class="group relative h-80 w-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl md:h-96"
+				>
+					<!-- 使用真实地图图片 -->
+					<Image
+						src={mapImage}
+						alt="予果予实留学办公地址地图"
+						width={1200}
+						class="h-full w-full object-cover hover:transform hover:scale-105 transition-transform duration-300"
+						quality={90}
+					/>
+					<!-- 地图交互元素将通过JavaScript动态添加 -->
+				</div>
+			</Col>
+			<Col span="4" classes="flex items-center">
+				<div class="flex flex-col gap-5">
+					<div class="flex flex-col items-start gap-4">
+						<div
+							class="flex-shrink-0 rounded-xl bg-white/50 p-5 dark:bg-neutral-900"
+						>
+							<Icon name="logo_main" class="text-5xl md:text-6xl" />
+						</div>
+						<div>
+							<p class="mb-2 text-lg font-semibold">
+								陕西省西安市高新区科技路50号<br>金桥国际广场C座906
+							</p>
+							<p class="text-sm">
+								地铁3号线延平门C2口出，步行10分钟可达
+							</p>
+						</div>
+					</div>
+					<div class="mt-2 flex flex-wrap gap-4">
+						<span
+							class="inline-flex items-center rounded-full bg-primary-300 px-4 py-1.5 text-sm font-medium text-primary-700 dark:bg-primary-900 dark:text-primary-300"
+						>
+							<Icon name="fluent:clock-16-filled" class="mr-1.5 h-4 w-4" />工作日
+							9:00-18:00
+						</span>
+						<span
+							class="inline-flex items-center rounded-full bg-primary-300 px-4 py-1.5 text-sm font-medium text-primary-700 dark:bg-primary-900 dark:text-primary-300"
+						>
+							<Icon
+								name="fluent:calendar-16-filled"
+								class="mr-1.5 h-4 w-4"
+							/>建议提前预约
+						</span>
+					</div>
+					<div class="border-t border-neutral-200 pt-5 dark:border-neutral-600">
+                        <Button id='navigate-btn'> <Icon name="long-arrow-right" class="mr-2 h-5 w-5" />获取导航路线</Button>
+					</div>
+				</div>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- 地图交互脚本 -->
+	<script>
+		// 初始化地图函数
+		function initializeMap() {
+			// 西安金桥国际广场C座的坐标
+			const officeLocation = [108.8925, 34.2358] // 经度,纬度
+
+			// 获取地图容器
+			const mapContainer = document.getElementById('map-container')
+
+			// 确保地图容器存在
+			if (!mapContainer) return
+
+			// 清空现有内容，避免重复添加
+			const existingMarker = mapContainer.querySelector('.map-marker')
+			if (existingMarker) return // 如果已经初始化过，则不再重复初始化
+
+			// 添加地图标记和信息窗体
+			const markerHTML = `
+				<div class="map-marker absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 group-hover:scale-110 transition-transform duration-300">
+					<div class="relative">
+						<!-- 标记点动画 -->
+						<div class="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center z-10 shadow-lg">
+							<div class="w-4 h-4 bg-white rounded-full"></div>
+						</div>
+						<!-- 扩散动画 -->
+						<div class="absolute top-0 left-0 w-8 h-8 bg-primary-500 rounded-full animate-ping opacity-75"></div>
+						<!-- 信息窗体 -->
+						<div class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-primary-300 dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-800 p-6 rounded-lg shadow-xl min-w-[280px] mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+							<div class="font-bold text-white dark:text-primary-400 text-base">📍 EDUGROW 予果予实</div>
+							<div class="text-xs text-neutral-600 dark:text-neutral-300">陕西省西安市高新区科技路50号<br>金桥国际广场C座906</div>
+							<!-- 三角形指示器 -->
+							<div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary-300 dark:border-t-neutral-800"></div>
+						</div>
+					</div>
+				</div>
+			`
+
+			// 添加地图水印
+			const watermarkHTML = `
+				<div class="absolute bottom-3 left-3 bg-white/80 dark:bg-neutral-800/80 px-2 py-1 rounded text-xs text-neutral-500 dark:text-primary-200 font-mono z-10">
+					© 予果予实留学地图
+				</div>
+			`
+
+			// 添加地图交互元素
+			mapContainer.insertAdjacentHTML('beforeend', markerHTML + watermarkHTML)
+
+			// 添加导航按钮事件
+			const navigateBtn = document.getElementById('navigate-btn')
+			if (!navigateBtn) return
+
+			// 移除现有的事件监听器，避免重复添加
+			navigateBtn.replaceWith(navigateBtn.cloneNode(true))
+
+			// 重新获取按钮并添加事件监听器
+			const newNavigateBtn = document.getElementById('navigate-btn')
+			if (!newNavigateBtn) return
+
+			newNavigateBtn.addEventListener('click', function () {
+				// 打开高德地图导航
+				window.open(
+					`https://uri.amap.com/navigation?to=${officeLocation[0]},${officeLocation[1]},予果予实留学咨询服务有限公司&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0`
+				)
+			})
+		}
+
+		// 页面加载完成时初始化地图
+		document.addEventListener('DOMContentLoaded', initializeMap)
+
+		// Astro页面转换后重新初始化地图
+		document.addEventListener('astro:page-load', initializeMap)
+
+		// 兼容View Transitions API
+		document.addEventListener('astro:after-swap', initializeMap)
+	</script>
+
+	<CTA />
+</Layout>

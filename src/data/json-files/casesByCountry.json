@@ -1,0 +1,204 @@
+{
+  "美国": [
+    { 
+      "name": "王同学", 
+      "photo": "/src/assets/avatars/avatar-01.webp", 
+      "university": "哈佛大学", 
+      "university_en": "Harvard University", 
+      "major": "经济学专业", 
+      "major_en": "Economics", 
+      "major_category": "商科",
+      "year": "2023年" 
+    },
+    { 
+      "name": "李同学", 
+      "photo": "/src/assets/avatars/avatar-02.webp", 
+      "university": "斯坦福大学", 
+      "university_en": "Stanford University", 
+      "major": "计算机科学专业", 
+      "major_en": "Computer Science", 
+      "major_category": "工科",
+      "year": "2023年" 
+    },
+    { 
+      "name": "陈同学", 
+      "photo": "/src/assets/avatars/avatar-03.webp", 
+      "university": "麻省理工学院", 
+      "university_en": "Massachusetts Institute of Technology", 
+      "major": "人工智能专业", 
+      "major_en": "Artificial Intelligence", 
+      "major_category": "工科",
+      "year": "2024年" 
+    },
+    { 
+      "name": "刘同学", 
+      "photo": "/src/assets/avatars/avatar-04.webp", 
+      "university": "耶鲁大学", 
+      "university_en": "Yale University", 
+      "major": "生物医学专业", 
+      "major_en": "Biomedical Sciences", 
+      "major_category": "医学",
+      "year": "2022年" 
+    }
+  ],
+  "英国": [
+    { 
+      "name": "张同学", 
+      "photo": "/src/assets/avatars/avatar-05.webp", 
+      "university": "牛津大学", 
+      "university_en": "Oxford University", 
+      "major": "哲学专业", 
+      "major_en": "Philosophy", 
+      "major_category": "文科",
+      "year": "2022年" 
+    },
+    { 
+      "name": "赵同学", 
+      "photo": "/src/assets/avatars/avatar-06.webp", 
+      "university": "剑桥大学", 
+      "university_en": "Cambridge University", 
+      "major": "工程专业", 
+      "major_en": "Engineering", 
+      "major_category": "工科",
+      "year": "2022年" 
+    },
+    { 
+      "name": "杨同学", 
+      "photo": "/src/assets/avatars/avatar-07.webp", 
+      "university": "伦敦政治经济学院", 
+      "university_en": "London School of Economics", 
+      "major": "国际关系专业", 
+      "major_en": "International Relations", 
+      "major_category": "社科",
+      "year": "2023年" 
+    },
+    { 
+      "name": "黄同学", 
+      "photo": "/src/assets/avatars/avatar-08.webp", 
+      "university": "帝国理工学院", 
+      "university_en": "Imperial College London", 
+      "major": "数据科学专业", 
+      "major_en": "Data Science", 
+      "major_category": "理科",
+      "year": "2024年" 
+    }
+  ],
+  "澳大利亚": [
+    { 
+      "name": "孙同学", 
+      "photo": "/src/assets/avatars/avatar-01.webp", 
+      "university": "墨尔本大学", 
+      "university_en": "University of Melbourne", 
+      "major": "金融专业", 
+      "major_en": "Finance", 
+      "major_category": "商科",
+      "year": "2021年" 
+    },
+    { 
+      "name": "钱同学", 
+      "photo": "/src/assets/avatars/avatar-02.webp", 
+      "university": "悉尼大学", 
+      "university_en": "University of Sydney", 
+      "major": "教育学专业", 
+      "major_en": "Education", 
+      "major_category": "教育",
+      "year": "2023年" 
+    },
+    { 
+      "name": "吕同学", 
+      "photo": "/src/assets/avatars/avatar-03.webp", 
+      "university": "澳大利亚国立大学", 
+      "university_en": "Australian National University", 
+      "major": "环境科学专业", 
+      "major_en": "Environmental Science", 
+      "major_category": "理科",
+      "year": "2022年" 
+    }
+  ],
+  "加拿大": [
+    { 
+      "name": "周同学", 
+      "photo": "/src/assets/avatars/avatar-04.webp", 
+      "university": "多伦多大学", 
+      "university_en": "University of Toronto", 
+      "major": "生物科学专业", 
+      "major_en": "Biological Sciences", 
+      "major_category": "理科",
+      "year": "2021年" 
+    },
+    { 
+      "name": "徐同学", 
+      "photo": "/src/assets/avatars/avatar-05.webp", 
+      "university": "麦吉尔大学", 
+      "university_en": "McGill University", 
+      "major": "心理学专业", 
+      "major_en": "Psychology", 
+      "major_category": "社科",
+      "year": "2023年" 
+    },
+    { 
+      "name": "胡同学", 
+      "photo": "/src/assets/avatars/avatar-06.webp", 
+      "university": "不列颠哥伦比亚大学", 
+      "university_en": "University of British Columbia", 
+      "major": "建筑学专业", 
+      "major_en": "Architecture", 
+      "major_category": "艺术",
+      "year": "2022年" 
+    }
+  ],
+  "新加坡": [
+    { 
+      "name": "吴同学", 
+      "photo": "/src/assets/avatars/avatar-07.webp", 
+      "university": "新加坡国立大学", 
+      "university_en": "National University of Singapore", 
+      "major": "信息系统专业", 
+      "major_en": "Information Systems", 
+      "major_category": "工科",
+      "year": "2022年" 
+    },
+    { 
+      "name": "朱同学", 
+      "photo": "/src/assets/avatars/avatar-08.webp", 
+      "university": "南洋理工大学", 
+      "university_en": "Nanyang Technological University", 
+      "major": "商业管理专业", 
+      "major_en": "Business Management", 
+      "major_category": "商科",
+      "year": "2023年" 
+    }
+  ],
+  "港澳": [
+    { 
+      "name": "郑同学", 
+      "photo": "/src/assets/avatars/avatar-01.webp", 
+      "university": "香港大学", 
+      "university_en": "University of Hong Kong", 
+      "major": "法律专业", 
+      "major_en": "Law", 
+      "major_category": "法学",
+      "year": "2023年" 
+    },
+    { 
+      "name": "冯同学", 
+      "photo": "/src/assets/avatars/avatar-02.webp", 
+      "university": "香港科技大学", 
+      "university_en": "Hong Kong University of Science and Technology", 
+      "major": "金融科技专业", 
+      "major_en": "Financial Technology", 
+      "major_category": "商科",
+      "year": "2022年" 
+    },
+    { 
+      "name": "蔡同学", 
+      "photo": "/src/assets/avatars/avatar-03.webp", 
+      "university": "澳门大学", 
+      "university_en": "University of Macau", 
+      "major": "酒店管理专业", 
+      "major_en": "Hotel Management", 
+      "major_category": "商科",
+      "year": "2024年" 
+    }
+  ]
+}

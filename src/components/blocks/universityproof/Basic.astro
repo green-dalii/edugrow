@@ -1,0 +1,88 @@
+---
+// University Proof Section
+// ------------
+// Description: A section with logos of universities to enhance the trust of the users.
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import { Image } from 'astro:assets'
+
+// Content
+import cornell from '../../../assets/logos/Cornell_University_Logo.svg'
+import eth from '../../../assets/logos/ETH_Logo.svg'
+import johns from '../../../assets/logos/Johns_Hopkins_University_Logo.svg'
+import mit from '../../../assets/logos/Massachusetts_Institute_of_Technology_Logo.svg'
+import stanford from '../../../assets/logos/Stanford_University_Logo.svg'
+import barclays from '../../../assets/logos/University_of_California_Berkeley_Logo.svg'
+import oxford from '../../../assets/logos/University_of_Oxford_Logo.svg'
+import yale from '../../../assets/logos/Yale_University_Logo.svg'
+import cambridge from '../../../assets/logos/University_of_Cambridge_Logo.svg'
+
+const images = [
+	{
+		image: mit,
+		alt: 'Massachusetts Institute of Technology logo'
+	},
+	{
+		image: stanford,
+		alt: 'Stanford University logo'
+	},
+	{
+		image: oxford,
+		alt: 'University of Oxford logo'
+	},
+	{
+		image: cambridge,
+		alt: 'University of Cambridge logo'
+	},
+	{
+		image: yale,
+		alt: 'Yale University logo'
+	},
+	{
+		image: cornell,
+		alt: 'Cornell University logo'
+	},
+	{
+		image: barclays,
+		alt: 'University of California, Berkeley logo'
+	},
+	{
+		image: eth,
+		alt: 'ETH logo'
+	},
+	{
+		image: johns,
+		alt: 'Johns Hopkins University logo'
+	},
+]
+
+// Props
+type Props = {
+	classes?: string
+}
+const { classes } = Astro.props
+---
+
+<Section padding="bottom" classes={classes}>
+	<!-- <Row>
+		<Col span="12" align="center">
+			<h2 class="!mb-6 text-base font-normal text-neutral-400 dark:text-neutral-600">
+				Partner <strong class="highlight">Universities</strong> worldwide
+			</h2></Col
+		>
+	</Row> -->
+	<Row flex classes="!flex-row !gap-16">
+		{
+			images.map((item) => (
+				<Col>
+					<Image src={item.image} alt={item.alt} />
+				</Col>
+			))
+		}
+	</Row>
+</Section>

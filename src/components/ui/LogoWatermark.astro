@@ -1,0 +1,48 @@
+---
+// Logo Watermark Component
+// ---------------------
+// Description: A reusable watermark component that displays a logo in the bottom right corner
+// Properties:
+// - logo: the logo image to display
+// - alt: the alt text for the logo
+// - width: the width of the logo (default: 300)
+// - height: the height of the logo (default: 300)
+// - containerClasses: additional classes for the container
+// - imageClasses: additional classes for the image
+
+import { Image } from 'astro:assets';
+
+type Props = {
+  logo: ImageMetadata;
+  alt: string;
+  width?: number;
+  height?: number;
+  containerClasses?: string;
+  imageClasses?: string;
+};
+
+const {
+  logo,
+  alt,
+  width = 300,
+  height = 300,
+  containerClasses = '',
+  imageClasses = '',
+} = Astro.props;
+
+// 默认容器类名
+const defaultContainerClasses = 'pointer-events-none absolute bottom-0 right-0 -z-10 h-40 w-40 overflow-hidden';
+
+// 默认图片类名
+const defaultImageClasses = 'h-full w-full translate-x-8 translate-y-14 transform object-right-bottom opacity-30 dark:opacity-10';
+---
+
+<div class={`${defaultContainerClasses} ${containerClasses}`}>
+  <Image
+    src={logo}
+    alt={alt}
+    width={width}
+    height={height}
+    class={`${defaultImageClasses} ${imageClasses}`}
+  />
+</div>

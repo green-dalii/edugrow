@@ -1,0 +1,89 @@
+---
+// Founders Section
+// ------------
+// Description: A section displaying information about the founders
+// Properties:
+// - title: the title of the section
+// - subtitle: the subtitle of the section
+// - classes: extra classes
+
+// Components
+// - UI
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+import FounderCard from '../../ui/cards/FounderCard.astro'
+
+// Images
+import tinaImg from '../../../assets/members/tina.png'
+import liuniImg from '../../../assets/members/liuni.png'
+import niuruiImg from '../../../assets/members/niurui.png'
+
+// Data
+import foundersData from '../../../data/json-files/foundersData.json'
+
+// Props
+type Props = {
+	title?: string
+	subtitle?: string
+	classes?: string
+}
+const { 
+	title = '团队成员', 
+	subtitle = '予果予实三位联合创始人均拥有丰富的留学行业经验，致力于为学生提供专业、真实的留学服务和全程陪伴。', 
+	classes 
+} = Astro.props
+---
+
+<Section id='members' padding="none" classes={`founders-section ${classes || ''}`}>
+	<Row>
+		<Col span="12" classes="text-center mb-12">
+			<h2 class="text-3xl font-bold mb-4">{title}</h2>
+			<p class="text-lg max-w-3xl mx-auto">{subtitle}</p>
+		</Col>
+	</Row>
+	<div class="founders-container">
+		{foundersData.map((founder, index) => {
+			let avatarImg;
+			if (index === 0) avatarImg = tinaImg;
+			else if (index === 1) avatarImg = liuniImg;
+			else if (index === 2) avatarImg = niuruiImg;
+
+			return (
+				<div class="founder-item">
+					<FounderCard
+						name={founder.name}
+						title={founder.title}
+						avatar={avatarImg}
+						achievements={founder.achievements}
+						classes="founder-card !bg-primary-50 dark:!bg-neutral-900 hover:shadow-xl transition-all duration-300 ease-in-out"
+					/>
+				</div>
+			);
+		})}
+	</div>
+</Section>
+
+<style>
+	.founders-section {
+		@apply bg-neutral-50 dark:bg-neutral-900;
+	}
+
+	.founders-container {
+		@apply flex flex-col gap-8 max-w-5xl mx-auto;
+	}
+
+	.founder-item {
+		@apply w-full transition-all duration-300;
+	}
+
+	.founder-card {
+		@apply border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden p-4 md:p-6;
+	}
+
+	@media (max-width: 768px) {
+		.founders-container {
+			@apply lg:px-4 gap-10;
+		}
+	}
+</style>

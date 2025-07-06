@@ -1,0 +1,124 @@
+---
+// Founder Card
+// ------------
+// Description: The card component for displaying founder information
+// Properties:
+// - Name: the name of the founder
+// - Title: the title/position of the founder
+// - Avatar: the avatar image of the founder
+// - Achievements: list of achievements
+// - classes: extra classes
+
+// Components
+// - UI
+import { Image } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+import Card from './partials/Card.astro'
+import CardBody from './partials/CardBody.astro'
+import Badge from '../Badge.astro'
+import LogoWatermark from '../LogoWatermark.astro'
+
+// 导入水印图片
+import logoWhite from '../../../assets/logo_white.svg'
+
+// Props
+type Props = {
+	name: string
+	title: string
+	avatar?: any
+	achievements: string[]
+	classes?: string
+}
+const {
+	name,
+	title,
+	avatar,
+	achievements,
+	classes = '!shadow-none border border-neutral-100 dark:border-neutral-800 h-full'
+} = Astro.props
+---
+
+<Card classes={classes}>
+	<div class="founder-card-content relative overflow-hidden">
+		<div class="founder-image-container">
+			<div class="founder-image-wrapper">
+				{avatar ? (
+					<Image src={avatar} alt={name} width={400} height={600} class="founder-image" />
+				) : (
+					<div class="founder-image-placeholder">
+						<Icon name="user" class="founder-image-icon" />
+					</div>
+				)}
+			</div>
+		</div>
+		<CardBody classes="founder-info md:!px-16 md:!py-10 isolate z-10">
+			<h3 class="founder-name">{name}</h3>
+			<Badge type="primary" name={title} classes="mb-3 block md:inline-block" />
+			<ul class="founder-achievements">
+				{achievements.map((achievement) => (
+					<li>{achievement}</li>
+				))}
+			</ul>
+			<slot />
+		</CardBody>
+		
+		<!-- 使用可复用的水印组件 -->
+		<LogoWatermark 
+			logo={logoWhite}
+			alt="Logo Watermark"
+			containerClasses="!h-64 !w-64 md:!h-80 md:!w-80 z-0"
+		/>
+	</div>
+</Card>
+
+<style>
+	.founder-card-content {
+		@apply flex flex-col md:flex-row md:items-start gap-8 lg:gap-0 w-full;
+	}
+
+	.founder-image-container {
+		@apply flex justify-center md:w-2/5 md:sticky md:top-24 h-full;
+	}
+
+	.founder-image-wrapper {
+		@apply relative overflow-hidden bg-primary-300 dark:bg-primary-600 w-full h-full max-w-lg max-h-96 md:max-h-[410px] mx-auto md:mx-0;
+		@apply rounded-xl;
+	}
+
+	.founder-image {
+		@apply w-full h-full object-cover object-center;
+		@apply transition-transform duration-300 hover:scale-105;
+	}
+
+	.founder-image-placeholder {
+		@apply bg-primary-100 dark:bg-primary-900 flex items-center justify-center h-64 w-full;
+	}
+
+	.founder-image-icon {
+		@apply h-24 w-24 text-primary-500 dark:text-primary-400;
+	}
+
+	.founder-info {
+		@apply md:w-2/3 flex-1 pt-4 md:pt-0;
+	}
+
+	.founder-name {
+		@apply mb-1 text-2xl font-bold text-center md:text-left text-primary-600 dark:text-primary-400;
+	}
+
+	/* 移除.founder-title样式，因为现在使用Badge组件 */
+
+	.founder-achievements {
+		@apply mt-4 space-y-1 text-xs;
+	}
+
+	.founder-achievements li {
+		@apply relative pl-6 py-1.5 before:absolute before:left-0 before:top-[0.6rem] before:h-2 before:w-2 before:rounded-full before:bg-primary-500;
+	}
+
+	@media (max-width: 768px) {
+		.founder-image-container {
+			@apply mb-4;
+		}
+	}
+</style>

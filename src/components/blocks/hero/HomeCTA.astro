@@ -1,0 +1,56 @@
+---
+// Home page CTA Section
+// ------------
+// Description: A centered call to action section that contains: a title, text, a user review snippet, a button and a image.
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import ChipNotification from '../../ui/ChipNotification.astro'
+import { Image } from 'astro:assets'
+import Button from '../../ui/Button.astro'
+import AvatarGroup from '../../ui/AvatarGroup.astro'
+
+// Content
+// - Hero Image
+import heroImage from '../../../assets/hero-01.png'
+// - Avatars
+import user1 from '../../../assets/avatars/avatar-tina.webp'
+import user2 from '../../../assets/avatars/avatar-liu.webp'
+import user3 from '../../../assets/avatars/avatar-niu.webp'
+const avatars = [
+	{ image: { src: user1.src, alt: '杨老师' }, link: '/about#members' },
+	{ image: { src: user2.src, alt: '刘老师' }, link: '/about#members' },
+	{ image: { src: user3.src, alt: '牛老师' }, link: '/about#members' }
+]
+---
+
+<Section id="intro" padding="top" classes="bg-primary-100 dark:bg-neutral-900">
+	<Row>
+		<Col span="2" />
+		<Col span="8" align="center">
+			<ChipNotification radius="rounded-full" classes="mb-6">
+				<strong>三位资深留学顾问</strong> 全程陪伴
+				<AvatarGroup avatars={avatars} radius="rounded-full" slot="button" />
+			</ChipNotification>
+			<h1><strong>予果予实</strong>用心陪伴学子的成长与梦想</h1>
+
+			<p class="pb-0 text-lg">予果予实（EDUGROW）专注于留学规划与成长陪伴，助力学子实现全球升学梦想。</p>
+			<Button size="lg" modal="contact">立即咨询</Button>
+		</Col>
+		<Col span="2" />
+		<Col span="2" />
+		<Col span="8">
+			<Image
+				src={heroImage}
+				alt="予果予实留学主视觉"
+				class="translate-y-8"
+				format="webp"
+			/>
+		</Col>
+		<Col span="2" />
+	</Row>
+</Section>

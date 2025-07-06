@@ -1,0 +1,47 @@
+[
+  { 
+    "name": "王同学", 
+    "photo": "/src/assets/avatars/avatar-01.webp", 
+    "university": "哈佛大学", 
+    "university_en": "Harvard University", 
+    "major": "经济学专业", 
+    "major_en": "Economics", 
+    "year": "2025年" 
+  },
+  { 
+    "name": "李同学", 
+    "photo": "/src/assets/avatars/avatar-02.webp", 
+    "university": "斯坦福大学", 
+    "university_en": "Stanford University", 
+    "major": "计算机科学专业", 
+    "major_en": "Computer Science", 
+    "year": "2025年" 
+  },
+  { 
+    "name": "张同学", 
+    "photo": "/src/assets/avatars/avatar-03.webp", 
+    "university": "牛津大学", 
+    "university_en": "Oxford University", 
+    "major": "哲学专业", 
+    "major_en": "Philosophy", 
+    "year": "2024年" 
+  },
+  { 
+    "name": "赵同学", 
+    "photo": "/src/assets/avatars/avatar-04.webp", 
+    "university": "剑桥大学", 
+    "university_en": "Cambridge University", 
+    "major": "电子工程专业", 
+    "major_en": "Engineering", 
+    "year": "2023年" 
+  },
+  { 
+    "name": "孙同学", 
+    "photo": "/src/assets/avatars/avatar-05.webp", 
+    "university": "麻省理工学院", 
+    "university_en": "Massachusetts Institute of Technology", 
+    "major": "物理专业", 
+    "major_en": "Physics", 
+    "year": "2022年" 
+  }
+]

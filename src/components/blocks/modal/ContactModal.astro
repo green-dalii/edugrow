@@ -1,0 +1,27 @@
+---
+// Contact Us Modal
+// ------------
+// Description: A modal with a form to scan.
+
+// Components
+// - UI
+import Modal from '../../ui/Modal.astro'
+import Form from '../../ui/forms/Form.astro'
+import FormField from '../../ui/forms/partials/FormField.astro'
+import InputField from '../../ui/forms/form-elements/InputField.astro'
+import Button from '../../ui/Button.astro'
+import { Icon } from 'astro-icon/components'
+
+// Props
+type Props = {
+	classes?: string
+}
+const { classes } = Astro.props
+---
+
+<Modal id="contact" classes={classes} title="扫一扫">
+	<p class="mb-0">微信「扫一扫」添加<strong>EDUGROW 予果予实</strong>小助手开始咨询😜~</p>
+	<div class="pt-4 flex justify-center w-full">
+		<Icon name="contact-qrcode" class="w-full max-w-xs h-auto" style="font-size: 200px;" />
+	</div>
+</Modal>

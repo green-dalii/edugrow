@@ -1,0 +1,27 @@
+---
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - UI
+import Hero from '../components/blocks/hero/HomeCTA.astro'
+import Features from '../components/blocks/features/FeatureCards.astro'
+import CTA from '../components/blocks/CTA/BasicDark.astro'
+import StudyCaseSlider from '../components/blocks/StudyCaseSlider.astro'
+import TestimonialCards from '../components/blocks/testimonials/TestimonialCards.astro'
+
+// Content
+// - SEO
+const SEO = {
+	title: '予果予实（EDUGROW）｜留学规划与成长陪伴',
+	description:
+		'予果予实（EDUGROW）——专注于留学规划与成长陪伴的专业机构，三位资深顾问团队，助力学子实现全球升学梦想。用心陪伴，成就未来。'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero />
+	<Features />
+	<StudyCaseSlider />
+	<TestimonialCards />
+	<CTA />
+</Layout>

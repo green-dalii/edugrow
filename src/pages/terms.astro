@@ -1,0 +1,39 @@
+---
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - UI
+import SidebarContent from '../components/blocks/basic/StickySidebar.astro'
+import Hero from '../components/blocks/hero/PageHeader.astro'
+
+// Content
+// - Markdown
+import { Content as TermsContent } from '../data/markdown-files/terms.md'
+
+// - SEO
+const SEO = {
+	title: '予果予实（EDUGROW）｜服务条款',
+	description:
+		'请仔细阅读予果予实（EDUGROW）服务条款，了解您的权利与义务。我们致力于为每一位学子提供专业、透明与高质量的留学服务。'
+}
+// - Page Header
+const header = {
+	title: '服务条款',
+	text: '请认真阅读以下内容，保障您的权益。'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={header.title} text={header.text} />
+	<SidebarContent>
+		<div slot="sidebar">
+			<h3>服务说明</h3>
+			<p>
+				予果予实（EDUGROW）为学子提供留学规划、背景提升、文书打磨、面试培训等全方位服务，服务内容以双方签署的协议为准。
+			</p>
+		</div>
+		<div class="basic-text prose prose-sm dark:prose-invert max-w-none">
+			<TermsContent />
+		</div>
+	</SidebarContent>
+</Layout>

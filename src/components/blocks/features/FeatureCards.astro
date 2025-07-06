@@ -1,0 +1,71 @@
+---
+// Feature Cards grid Section
+// ------------
+// Description: A grid of cards with feature information in a 4 column layout.
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import Card from '../../ui/cards/FeatureCard.astro'
+
+// Content
+// - Cards
+import feature01 from '../../../assets/cards/feature-01.svg'
+import feature02 from '../../../assets/cards/feature-02.svg'
+import feature03 from '../../../assets/cards/feature-03.svg'
+import feature04 from '../../../assets/cards/feature-04.svg'
+import feature05 from '../../../assets/cards/feature-05.svg'
+import feature06 from '../../../assets/cards/feature-06.svg'
+---
+
+<Section id="features">
+	<Row>
+		<Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+			<h2 class="text-pretty">全方位留学服务，<strong>助力每一位学子成长</strong></h2>
+			<p class="pb-0 text-lg">
+				从学业规划、背景提升、文书指导到面试培训，予果予实为您量身定制留学方案，覆盖美国、英国、加拿大、澳洲、新加坡、香港等主流国家和地区。
+			</p>
+		</Col>
+	</Row>
+	<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+		<Card
+			title="一对一全程规划"
+			subtitle="一人一案深度挖掘学生潜力，制定个性化成长与申请路径。"
+			image={feature01}
+			link="/service"
+		/>
+		<Card
+			title="数据驱动，精准匹配"
+			subtitle="依托自有留学资源数据库，精准匹配最适合学生的留学方案。"
+			image={feature02}
+			link="/service"
+		/>
+		<Card
+			title="背景提升与活动规划"
+			subtitle="结合学术兴趣与未来方向，定制科研、实习、社会活动等背景提升方案。"
+			image={feature03}
+			link="/service"
+		/>
+		<Card
+			title="文书深度打磨"
+			subtitle="多轮头脑风暴与精细润色，挖掘独特故事，展现真实自我。"
+			image={feature04}
+			link="/service"
+		/>
+		<Card
+			title="面试培训与录取跟进"
+			subtitle="模拟面试、全流程陪伴，助力学生自信应对各类院校面试。"
+			image={feature05}
+			link="/service"
+		/>
+		<Card
+			title="多国申请与全程陪伴"
+			subtitle="覆盖美、英、加、澳、新、港等主流留学目的地，陪伴每一步成长。"
+			image={feature06}
+			link="/service"
+		/>
+	</div>
+</Section>

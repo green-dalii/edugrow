@@ -1,0 +1,30 @@
+---
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - UI
+import Hero from '../components/blocks/hero/PageHeader.astro'
+import CTA from '../components/blocks/CTA/BasicDark.astro'
+import CompanyIntroSection from '../components/blocks/about/CompanyIntroSection.astro'
+import FoundersSection from '../components/blocks/about/FoundersSection.astro'
+
+// Content
+// - SEO
+const SEO = {
+	title: '予果予实（EDUGROW）｜关于我们',
+	description:
+		'如需留学咨询、服务预约或有任何疑问，欢迎联系予果予实（EDUGROW）团队，三位资深顾问将为你提供专业解答与全程陪伴。'
+}
+// - Page Header
+const header = {
+	title: '关于我们',
+	text: '如需咨询、预约服务或了解更多信息，欢迎随时与我们取得联系。三位资深顾问将为你提供一对一专业解答。'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={header.title} text={header.text} />
+	<CompanyIntroSection />
+	<FoundersSection />
+	<CTA />
+</Layout>

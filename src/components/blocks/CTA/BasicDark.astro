@@ -1,0 +1,43 @@
+---
+// Basic Dark Call To Action section
+// ------------
+// Description: A centered call to action section that contains: a title, text, background image, notification and a button.
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import CTA from '../../ui/CTA.astro'
+import Button from '../../ui/Button.astro'
+import ChipNotification from '../../ui/ChipNotification.astro'
+import { Image } from 'astro:assets'
+import Highlight from '../../ui/Highlight.astro'
+
+// Content
+import ctaImage from '../../../assets/cta-dark-bg.png'
+import badge from '../../../assets/logo_white.svg'
+---
+
+<Section>
+	<Row>
+		<Col span="1" />
+		<Col span="10">
+			<CTA
+				title="立即开启你的留学成长之旅！"
+				text="选择予果予实，让专业与温度陪伴你的每一步。立即预约专属顾问，定制你的留学成长方案。"
+				mode="dark"
+				bg={ctaImage}
+			>
+				<ChipNotification radius="rounded-full" classes="mb-6 box">
+					<Image src={badge} alt="品牌信赖" class="h-12 w-12 p-2" slot="button" />
+					<Highlight > EDUGROW · 予果予实 </Highlight>
+					<span class="hidden md:ml-2 md:block text-primary-300">十余年行业经验，百余位学员成功录取</span>
+				</ChipNotification>
+				<Button size="lg" style="primary" modal='contact'> 立即咨询 </Button>
+			</CTA>
+		</Col>
+		<Col span="1" />
+	</Row>
+</Section>

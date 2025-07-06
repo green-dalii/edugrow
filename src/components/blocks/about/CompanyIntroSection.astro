@@ -1,0 +1,95 @@
+---
+// Company Introduction Section
+// ------------
+// Description: A section displaying information about the company with text and image layout
+
+// Components
+// - UI
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import TextImage from '../basic/TextImage.astro'
+
+// Content
+import highlight01 from '../../../assets/about/brand_explanation.svg'
+import highlight02 from '../../../assets/about/schwarzman.svg'
+import highlight03 from '../../../assets/about/global.svg'
+import logoAnimation from '../../../assets/about/edugrow_logo_animation.mp4'
+
+// Props
+type Props = {
+	classes?: string
+}
+const { classes } = Astro.props
+
+// Content blocks
+type IntroBlock = {
+	title: string
+	text: string
+	image: any
+	imageWidth: number
+	imageHeight: number
+	imagePosition: 'left' | 'right'
+}
+
+// Define the type for the JSON data
+type IntroBlockData = {
+	title: string
+	text: string
+	image: 'highlight01' | 'highlight02' | 'highlight03' | 'highlight04'
+	imageWidth: number
+	imageHeight: number
+	imagePosition: 'left' | 'right'
+}
+
+// Import intro blocks data from JSON file
+import introBlocksData from '../../../data/json-files/introBlocksData.json';
+
+// Map image names to actual image imports
+const imageMap = {
+	highlight01,
+	highlight02,
+	highlight03,
+};
+
+// Process the imported data to replace image strings with actual image imports
+const introBlocks: IntroBlock[] = (introBlocksData as IntroBlockData[]).map(block => ({
+	...block,
+	image: imageMap[block.image as keyof typeof imageMap]
+}));
+---
+<!-- LOGO Animation -->
+<Section id="company-intro" padding="none" classes={`company-intro-section ${classes || ''}`}>
+	<Row>
+		<div class="video-container mx-auto mt-12 col-span-full">
+			<video 
+				class="w-full max-w-7xl mx-auto rounded-xl" 
+				autoplay 
+				loop 
+				muted 
+				playsinline
+			>
+				<source src={logoAnimation} type="video/mp4">
+				您的浏览器不支持视频播放。
+			</video>
+		</div>
+	</Row>
+</Section>
+{/* 使用TextImage组件展示内容块 */}
+{introBlocks.map((block, index) => (
+	<TextImage
+		id={`intro-block-${index}`}
+		title={block.title}
+		text={block.text}
+		image={block.image}
+		imageWidth={block.imageWidth}
+		imageHeight={block.imageHeight}
+		imagePosition={block.imagePosition}
+		classes={index === 0 ? '' : index === introBlocks.length - 1 ? '' : '!py-0'}
+	/>
+))}
+
+<style>
+	.company-intro-section {
+		@apply bg-white dark:bg-neutral-950;
+	}
+</style>

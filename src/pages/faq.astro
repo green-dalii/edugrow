@@ -1,0 +1,36 @@
+---
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - UI
+import Hero from '../components/blocks/hero/PageHeader.astro'
+import FAQ from '../components/blocks/FAQ/FaqSticky.astro'
+import CTA from '../components/blocks/CTA/BasicDark.astro'
+
+// Content
+import faqImage1 from '../assets/faq/faq-01.png'
+
+// - SEO
+const SEO = {
+	title: '予果予实（EDUGROW）｜留学常见问题解答',
+	description:
+		'关于留学规划、服务流程、团队背景、申请国家等常见问题，予果予实（EDUGROW）为你详细解答，助力每一位学子安心成长。'
+}
+// - Page Header
+const header = {
+	title: '予果予实留学常见问题解答',
+	text: '关于服务、流程、团队、申请等问题，尽在此处。'
+}
+// Data
+import faqData from '../data/json-files/faqData.json'
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={header.title} text={header.text} />
+	<FAQ
+		title="常见问题"
+		text="如有更多疑问，欢迎随时联系我们的顾问团队。"
+		data={faqData}
+	/>
+	<CTA />
+</Layout>

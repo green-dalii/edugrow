@@ -1,0 +1,68 @@
+[
+  {
+    "title": "留学申请时间规划",
+    "icon": "twemoji:calendar",
+    "description": "为学生量身定制详细的留学申请时间表，涵盖各阶段关键节点，确保每一步都高效有序进行。",
+    "category": "规划与准备"
+  },
+  {
+    "title": "背景提升规划",
+    "icon": "twemoji:light-bulb",
+    "description": "根据目标院校和专业，制定个性化背景提升方案，包括科研、实习、志愿活动等，增强申请竞争力。",
+    "category": "规划与准备"
+  },
+  {
+    "title": "考试进程规划",
+    "icon": "twemoji:clipboard",
+    "description": "科学规划语言及标准化考试（如雅思、托福、GRE/GMAT等）时间节点，提供备考建议与资源。",
+    "category": "规划与准备"
+  },
+  {
+    "title": "职业测评与发展规划",
+    "icon": "twemoji:bar-chart",
+    "description": "通过专业职业测评，帮助学生明确兴趣与优势，结合留学目标制定长远职业发展路径。",
+    "category": "规划与准备"
+  },
+  {
+    "title": "专业方向指导",
+    "icon": "twemoji:compass",
+    "description": "结合学生兴趣、学术背景及就业趋势，提供专业选择建议，助力精准定位未来方向。",
+    "category": "规划与准备"
+  },
+  {
+    "title": "选校信息指导",
+    "icon": "twemoji:school",
+    "description": "基于大数据与多年经验，分析院校录取趋势，推荐最适合学生的目标院校与专业。",
+    "category": "规划与准备"
+  },
+  {
+    "title": "海外顶尖院校外教文书指导",
+    "icon": "twemoji:books",
+    "description": "由海外名校外教一对一指导文书写作，深度挖掘个人亮点，提升文书质量，助力脱颖而出。",
+    "category": "申请与文书"
+  },
+  {
+    "title": "申请进度把控",
+    "icon": "twemoji:hourglass-not-done",
+    "description": "全流程跟进申请进度，及时提醒材料准备、递交及补充，确保每个环节不遗漏。",
+    "category": "签证与流程"
+  },
+  {
+    "title": "签证规划指导",
+    "icon": "twemoji:passport-control",
+    "description": "提供签证材料准备、面试辅导及流程指导，提升签证通过率，顺利开启留学之旅。",
+    "category": "签证与流程"
+  },
+  {
+    "title": "离境前后续服务",
+    "icon": "twemoji:airplane",
+    "description": "涵盖行前培训、住宿安排、接机服务及海外生活指导，保障学生顺利适应新环境。",
+    "category": "境外与职业发展"
+  },
+  {
+    "title": "就业分析与指导",
+    "icon": "twemoji:briefcase",
+    "description": "结合留学国家就业环境，提供行业分析、实习与就业指导，助力毕业后顺利就业。",
+    "category": "境外与职业发展"
+  }
+]

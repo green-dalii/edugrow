@@ -1,0 +1,50 @@
+---
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - UI
+import Hero from '../components/blocks/hero/PageHeader.astro'
+import Price from '../components/blocks/pricing/PricingColumns.astro'
+import UniversityProof from '../components/blocks/universityproof/Basic.astro'
+import FAQ from '../components/blocks/FAQ/Basic.astro'
+import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
+import Feature from '../components/blocks/features/FeatureList.astro'
+import CTA from '../components/blocks/CTA/BasicDark.astro'
+
+// Content
+// - SEO
+const SEO = {
+	title: '予果予实（EDUGROW）｜服务费用与套餐',
+	description:
+		'予果予实（EDUGROW）提供灵活透明的留学服务费用结构，支持多国申请、一对一全程规划、文书打磨等多种服务套餐，欢迎咨询获取详细报价。'
+}
+// - Page Header
+const header = {
+	title: '服务费用与套餐',
+	text: '根据你的需求和申请国家，量身定制专属服务方案，费用灵活透明。'
+}
+// - Testimonial data
+import testimonialBackground from '../assets/testimonial-bg-02.webp'
+const testimonialData = {
+	blockquote:
+		'予果予实的顾问团队非常专业，服务细致，帮助我顺利拿到理想院校录取。全程陪伴让我很安心！',
+	figcaption: '李同学',
+	cite: '2024年英国硕士录取学员'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={header.title} text={header.text} />
+	<Price />
+	<UniversityProof />
+	<Feature />
+	<Testimonial
+		bg={testimonialBackground}
+		bgPosition="left"
+		blockquote={testimonialData.blockquote}
+		figcaption={testimonialData.figcaption}
+		cite={testimonialData.cite}
+	/>
+	<FAQ classes="bg-primary-50 dark:bg-neutral-900/40" />
+	<CTA />
+</Layout>

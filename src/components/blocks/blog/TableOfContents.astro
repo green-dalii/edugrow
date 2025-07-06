@@ -1,0 +1,122 @@
+---
+// Table of Contents Component for Blog Posts
+// ------------
+// Description: A sidebar component that displays the headings of the blog post for easy navigation.
+// This component automatically extracts headings from the content and creates a navigation menu.
+
+// Props
+type Props = {
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+};
+
+const { headings = [] } = Astro.props;
+
+// Filter headings to only include h1 and h2
+const filteredHeadings = headings?.filter(heading => heading.depth === 1 || heading.depth === 2) || [];
+---
+
+{filteredHeadings.length > 0 && (
+  <aside class="toc-container">
+    <div class="toc-sticky">
+      <h2 class="toc-title">文章导航</h2>
+      <nav class="toc-nav">
+        <ul class="toc-list">
+          {filteredHeadings.map((heading) => (
+            <li class={`toc-item toc-item--h${heading.depth}`}>
+              <a href={`#${heading.slug}`} class="toc-link text-xs">
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </aside>
+)}
+
+<style>
+  .toc-container {
+    @apply hidden lg:block w-64 flex-shrink-0;
+  }
+  
+  .toc-sticky {
+    @apply sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4;
+  }
+  
+  .toc-title {
+    @apply text-lg font-bold mb-4 text-neutral-700 dark:text-neutral-200;
+  }
+  
+  .toc-list {
+    @apply space-y-2;
+  }
+  
+  .toc-item {
+    @apply text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors;
+  }
+  
+  .toc-item--h3 {
+    @apply ml-4;
+  }
+  
+  .toc-link {
+    @apply block py-1 border-l-2 border-transparent pl-2 hover:border-primary-500 transition-colors;
+  }
+  
+  .toc-link.active {
+    @apply border-primary-500 text-primary-600 dark:text-primary-400 font-medium;
+  }
+</style>
+
+<script>
+  // 为 Window 接口扩展 tocObserver 属性
+  declare global {
+    interface Window {
+      tocObserver?: IntersectionObserver;
+    }
+  }
+
+  // 初始化目录滚动检测功能
+  function initTocObserver() {
+    // 先检查是否已经有观察者在运行，如果有则不重复初始化
+    if (window.tocObserver) {
+      window.tocObserver.disconnect();
+    }
+    
+    // 创建新的 IntersectionObserver
+    window.tocObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute('id');
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach((link) => {
+              link.classList.remove('active');
+            });
+            document
+              .querySelector(`.toc-link[href="#${id}"]`)
+              ?.classList.add('active');
+          }
+        });
+      },
+      { rootMargin: '-100px 0px -66% 0px' }
+    );
+
+    // 观察所有带有 id 的 h1 和 h2 标题
+    document.querySelectorAll('h1[id], h2[id]').forEach((heading) => {
+      window.tocObserver?.observe(heading);
+    });
+  }
+
+  // 在页面加载完成时初始化
+  document.addEventListener('DOMContentLoaded', initTocObserver);
+  
+  // 在 Astro View Transition 页面转换后重新初始化
+  document.addEventListener('astro:after-swap', initTocObserver);
+  
+  // 兼容 astro:page-load 事件
+  document.addEventListener('astro:page-load', initTocObserver);
+</script>

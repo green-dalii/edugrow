@@ -1,0 +1,47 @@
+---
+// Tags for the Blog and post pages
+
+// Components
+// - UI
+import Badge from '../Badge.astro'
+
+//Data
+import { getCollection } from 'astro:content'
+const posts = await getCollection('blog')
+const tags = [...new Set(posts.map((post) => post.data.tags).flat())]
+const currentPath = new URL(Astro.request.url).pathname
+const pathSegments = currentPath.split('/').filter((segment) => segment.length > 0)
+
+// 改进标签激活状态的逻辑
+let currentTag = ''
+
+// 检查是否在标签页面
+if (pathSegments.length >= 2 && pathSegments[1] === 'tags' && pathSegments.length >= 3) {
+  // 如果是标签页面，获取标签名（需要解码URL编码的标签名）
+  currentTag = decodeURIComponent(pathSegments[2])
+} else if (pathSegments.length === 1 && pathSegments[0] === 'blog') {
+  // 如果是博客主页，设置为'blog'
+  currentTag = 'blog'
+}
+---
+
+<div class="tags">
+	<Badge link={`/blog/`} name={`All`} type={`${currentTag === 'blog' ? 'primary' : 'neutral'}`} />
+	{
+		tags.map((tag) => (
+			<>
+				<Badge
+					link={`/blog/tags/${tag}`}
+					name={tag}
+					type={`${currentTag === tag ? 'primary' : 'neutral'}`}
+				/>
+			</>
+		))
+	}
+</div>
+
+<style>
+	.tags {
+		@apply mb-6 flex flex-row flex-wrap items-center justify-start gap-2 capitalize;
+	}
+</style>
