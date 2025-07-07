@@ -5,6 +5,8 @@ import icon from "astro-icon";
 
 import sitemap from "@astrojs/sitemap";
 
+import playformCompress from "@playform/compress";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://edugrow.cn/",
@@ -12,10 +14,7 @@ export default defineConfig({
     tailwind(),
     icon(),
     sitemap(),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
+    partytown(),
+    playformCompress(),
   ],
 });

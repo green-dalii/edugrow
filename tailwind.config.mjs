@@ -63,8 +63,8 @@ export default {
         fancy: "url(https://www.svgrepo.com/show/269/color-picker.svg)",
       },
       fontFamily: {
-        sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
-        headings: ["Outfit Variable", ...defaultTheme.fontFamily.sans],
+        sans: ["Inter Variable", "Inter Variable Fallback", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
+        headings: ["Outfit Variable", "Outfit Variable Fallback", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
       },
       keyframes: {
         dropdown: {

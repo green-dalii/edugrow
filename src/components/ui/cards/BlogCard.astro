@@ -43,12 +43,7 @@ const {
 <Card classes={classes}>
 	<a href={link}>
 		{image && (
-			// 检查image是否为字符串路径，如果是，则使用img标签，否则使用Image组件
-			typeof image === 'string' && image.startsWith('src/') ? (
-				<img src={image.replace('src/', '/')} alt={title} width="600" height="400" class="w-full h-auto object-cover" />
-			) : (
-				<Image src={image} alt={title} width={600} class="w-full h-auto object-cover" />
-			)
+			<Image src={image} alt={title} width={600} quality="mid" class="w-full h-auto object-cover" />
 		)}
 		<CardBody>
 			<h3 class="post-title">
