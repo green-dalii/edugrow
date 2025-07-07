@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://edugrow.top/",
+  site: "https://edugrow.cn/",
   integrations: [
     tailwind(),
     icon(),

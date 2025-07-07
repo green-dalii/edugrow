@@ -15,8 +15,8 @@ type Props = {
 
 const { headings = [] } = Astro.props;
 
-// Filter headings to only include h1 and h2
-const filteredHeadings = headings?.filter(heading => heading.depth === 1 || heading.depth === 2) || [];
+// Filter headings to only include h2 and h3
+const filteredHeadings = headings?.filter(heading => heading.depth === 2 || heading.depth === 3) || [];
 ---
 
 {filteredHeadings.length > 0 && (
@@ -50,15 +50,15 @@ const filteredHeadings = headings?.filter(heading => heading.depth === 1 || head
   .toc-title {
     @apply text-lg font-bold mb-4 text-neutral-700 dark:text-neutral-200;
   }
-  
-  .toc-list {
-    @apply space-y-2;
-  }
-  
+
   .toc-item {
     @apply text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors;
   }
   
+  .toc-item--h2 {
+    @apply mt-2;
+  }
+
   .toc-item--h3 {
     @apply ml-4;
   }
@@ -105,8 +105,8 @@ const filteredHeadings = headings?.filter(heading => heading.depth === 1 || head
       { rootMargin: '-100px 0px -66% 0px' }
     );
 
-    // 观察所有带有 id 的 h1 和 h2 标题
-    document.querySelectorAll('h1[id], h2[id]').forEach((heading) => {
+    // 观察所有带有 id 的 h2 和 h3 标题
+    document.querySelectorAll('h2[id], h3[id]').forEach((heading) => {
       window.tocObserver?.observe(heading);
     });
   }

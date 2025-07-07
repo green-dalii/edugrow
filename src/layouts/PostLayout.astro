@@ -1,6 +1,6 @@
 ---
 // Imports
-const { frontmatter, headings } = Astro.props
+const { frontmatter, headings, entry } = Astro.props
 
 //Layout Components
 import Layout from './Layout.astro'
@@ -8,6 +8,7 @@ import Layout from './Layout.astro'
 // Section Components
 import BlogPostHero from '../components/blocks/blog/BlogPostHero.astro'
 import TableOfContents from '../components/blocks/blog/TableOfContents.astro'
+import RelatedPosts from '../components/blocks/blog/RelatedPosts.astro'
 
 // Content
 // - SEO
@@ -22,7 +23,7 @@ const SEO = {
 		tags={frontmatter.tags}
 		title={frontmatter.title}
 		author={frontmatter.author}
-		publishDate={frontmatter.pubDate.toLocaleDateString('en-US', {
+		publishDate={frontmatter.pubDate.toLocaleDateString('zh-CN', {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric'
@@ -31,11 +32,14 @@ const SEO = {
 
 	<div class="post-container">
 		<div class="post-content-wrapper">
-			<article class="post-body prose prose-lg dark:prose-invert prose-h2:pt-28 prose-h2:underline prose-h2:underline-offset-8 prose-headings:font-headings prose-headings:text-neutral-700 dark:prose-headings:text-neutral-50 prose-a:text-primary-500 hover:prose-a:text-primary-600 prose-img:rounded prose-img:border prose-img:border-neutral-100 dark:prose-img:border-neutral-600 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 dark:prose-blockquote:bg-neutral-800 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:rounded prose-table:border-collapse prose-th:border prose-th:border-neutral-300 dark:prose-th:border-neutral-600 prose-th:py-3 prose-th:px-4 prose-th:bg-neutral-100 dark:prose-th:bg-neutral-800 prose-td:border prose-td:border-neutral-300 dark:prose-td:border-neutral-600 prose-td:py-3 prose-td:px-4 max-w-none">
+			<article class="post-body prose prose-lg dark:prose-invert prose-h2:pt-28 prose-h2:underline prose-h2:underline-offset-8 prose-headings:font-headings prose-headings:text-neutral-700 dark:prose-headings:text-neutral-50 prose-a:text-primary-500 hover:prose-a:text-primary-600 prose-img:rounded prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 dark:prose-blockquote:bg-neutral-800 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:italic prose-blockquote:rounded prose-blockquote:before:content-none prose-blockquote:after:content-none prose-table:border-collapse prose-th:border prose-th:border-neutral-300 dark:prose-th:border-neutral-600 prose-th:py-3 prose-th:px-4 prose-th:bg-neutral-100 dark:prose-th:bg-neutral-800 prose-td:border prose-td:border-neutral-300 dark:prose-td:border-neutral-600 prose-td:py-3 prose-td:px-4 max-w-none">
 				<slot />
+				{frontmatter.relatedPosts && frontmatter.relatedPosts.length > 0 && (
+					<RelatedPosts relatedPosts={frontmatter.relatedPosts} currentPostId={entry.id} />
+				)}
 			</article>
 		</div>
-		
+		<!-- 侧边栏目录 -->
 		<TableOfContents headings={headings} />
 	</div>
 </Layout>

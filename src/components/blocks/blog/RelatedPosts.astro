@@ -1,0 +1,66 @@
+---
+// Related Posts Component for Blog Posts
+// ------------
+// Description: A component that displays related blog posts at the end of a blog post.
+
+// Imports
+import { getCollection, getEntries, type CollectionEntry } from 'astro:content';
+
+// Props
+type Props = {
+  relatedPosts?: Array<{ collection: 'blog'; id: string }>;
+  currentPostId: string;
+};
+
+const { relatedPosts = [], currentPostId } = Astro.props;
+
+// 如果没有指定相关文章，则不显示任何内容
+if (relatedPosts.length === 0) {
+  return;
+}
+
+// 获取相关文章的完整内容
+const relatedPostEntries = await getEntries(relatedPosts);
+
+// 过滤出有效的相关文章（排除当前文章和无效引用）
+const filteredPosts = relatedPostEntries
+  .filter((post): post is CollectionEntry<'blog'> => 
+    post?.collection === 'blog' && post.id !== currentPostId
+  );
+
+// 如果没有找到相关文章，则不显示任何内容
+if (filteredPosts.length === 0) {
+  return;
+}
+---
+
+<section class="related-posts">
+  <h1 class="related-posts-title">相关阅读</h1x>
+  <ul class="related-posts-list">
+    {filteredPosts.map(post => (
+      <li class="related-post-item">
+        <a href={`/blog/${encodeURI(post.id)}`} class="related-post-link">
+          {post.data.title}
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .related-posts {
+    @apply mt-16 pt-8;
+  }
+  
+  .related-posts-title {
+    @apply text-lg font-bold mb-4 text-neutral-800 dark:text-neutral-100;
+  }
+  
+  .related-posts-list {
+    @apply list-disc pl-5 space-y-4 text-sm;
+  }
+  
+  .related-post-link {
+    @apply text-primary-600 dark:text-primary-400 hover:underline font-medium;
+  }
+</style>

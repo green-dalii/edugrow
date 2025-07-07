@@ -1,6 +1,7 @@
 ---
 // 留学案例滑动卡片组件
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Card from '../ui/cards/partials/Card.astro';
 import CardBody from '../ui/cards/partials/CardBody.astro';
 import Row from '../ui/Row.astro';
@@ -17,6 +18,31 @@ import studyCasesData from '../../data/json-files/studyCasesData.json';
 
 // 导入水印图片
 import eduGrowLogo from '../../assets/logo_white.svg';
+
+// 导入头像图片
+import avatar01 from '../../assets/avatars/avatar-01.webp';
+import avatar02 from '../../assets/avatars/avatar-02.webp';
+import avatar03 from '../../assets/avatars/avatar-03.webp';
+import avatar04 from '../../assets/avatars/avatar-04.webp';
+import avatar05 from '../../assets/avatars/avatar-05.webp';
+
+// 创建头像映射对象
+const avatarMap: Record<string, ImageMetadata> = {
+  '/src/assets/avatars/avatar-01.webp': avatar01,
+  '/src/assets/avatars/avatar-02.webp': avatar02,
+  '/src/assets/avatars/avatar-03.webp': avatar03,
+  '/src/assets/avatars/avatar-04.webp': avatar04,
+  '/src/assets/avatars/avatar-05.webp': avatar05,
+};
+
+// 获取头像的安全函数
+function getAvatar(path: string): ImageMetadata {
+  if (path in avatarMap) {
+    return avatarMap[path];
+  }
+  // 默认返回第一个头像，避免运行时错误
+  return avatar01;
+}
 ---
 
 <div id="studycases" class="mx-auto px-6">
@@ -44,7 +70,7 @@ import eduGrowLogo from '../../assets/logo_white.svg';
                 <div class="relative z-10 mr-4">
                   <div class="w-16 h-16 rounded-full overflow-hidden border-4 border-primary-500">
                     <Image 
-                      src={item.photo} 
+                      src={getAvatar(item.photo)} 
                       alt={item.name} 
                       width={80} 
                       height={80} 
@@ -104,7 +130,7 @@ import eduGrowLogo from '../../assets/logo_white.svg';
                 <div class="relative z-10 mr-4">
                   <div class="w-16 h-16 rounded-full overflow-hidden border-4 border-primary-500">
                     <Image 
-                      src={item.photo} 
+                      src={getAvatar(item.photo)} 
                       alt={item.name} 
                       width={80} 
                       height={80} 

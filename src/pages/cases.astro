@@ -17,10 +17,31 @@ import LogoWatermark from '../components/ui/LogoWatermark.astro'
 import eduGrowLogo from '../assets/logo_white.svg'
 
 // - Testimonial background
-import testimonialBackground from '../assets/testimonial-bg-01.png'
+import testimonialBackground from '../assets/testimonial-bg-01.webp'
 
 // 从JSON文件导入数据
 import casesByCountry from '../data/json-files/casesByCountry.json'
+
+// 导入所有头像图片
+const avatarImages = import.meta.glob<{ default: any }>('/src/assets/avatars/*.webp')
+
+// 创建头像路径映射对象
+const avatarMap: Record<string, any> = {}
+
+// 填充映射对象
+for (const [path, importFunc] of Object.entries(avatarImages)) {
+  const importedImage = await importFunc()
+  avatarMap[path] = importedImage.default
+}
+
+// 获取头像函数
+function getAvatar(photoPath: string): any {
+  if (avatarMap[photoPath]) {
+    return avatarMap[photoPath]
+  }
+  // 如果找不到图片，返回第一个可用的图片（防止错误）
+  return Object.values(avatarMap)[0]
+}
 
 const SEO = {
 	title: '留学案例展示｜予果予实（EDUGROW）',
@@ -157,7 +178,7 @@ const majorCategories = getAllMajorCategories()
 										<div class="relative z-10 mr-4">
 											<div class="h-16 w-16 overflow-hidden rounded-full border-4 border-primary-500">
 												<Image
-													src={item.photo}
+													src={getAvatar(item.photo)}
 													alt={item.name}
 													width={80}
 													height={80}

@@ -1,4 +1,4 @@
-import { z, defineCollection } from 'astro:content'
+import { z, defineCollection, reference } from 'astro:content'
 import { glob } from 'astro/loaders'
 
 const blog = defineCollection({
@@ -10,7 +10,8 @@ const blog = defineCollection({
 			pubDate: z.date(),
 			image: image(),
 			author: z.string(),
-			tags: z.array(z.string())
+			tags: z.array(z.string()),
+			relatedPosts: z.array(reference('blog')).optional()
 		})
 })
 
