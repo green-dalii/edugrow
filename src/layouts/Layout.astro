@@ -10,7 +10,7 @@ import Header from '../components/blocks/head/Header.astro'
 import Scriprs from '../components/scripts/LocalScripts.astro'
 // Styles
 import '../styles/global.css'
-// Fonts
+// Fonts - 延迟加载
 import '@fontsource-variable/inter'
 import '@fontsource-variable/outfit'
 // Data
@@ -30,6 +30,10 @@ const { title, description, ogImage, noindex } = Astro.props
 <!doctype html>
 <html lang="zh" class="scroll-animation mode-auto">
 	<Header title={title} description={description} ogImage={ogImage} noindex={noindex} />
+	<!-- 预加载主要CSS文件 -->
+	<link rel="preload" href="/src/styles/global.css" as="style" />
+	<!-- 预加载首屏图片 -->
+	<link rel="preload" href="/src/assets/hero-01.webp" as="image" fetchpriority="high" />
 	<body
 		class:list={[
 			{ ['mode-' + `${configData.mode}`]: configData.mode },

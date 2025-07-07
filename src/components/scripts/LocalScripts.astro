@@ -1,5 +1,5 @@
 <!-- Scripts for UI components -->
-<script async defer>
+<script defer>
 	document.addEventListener('astro:page-load', () => {
 		// Menu Dropdown
 		const menuItems = document.querySelectorAll('.header__menu-item')
@@ -74,78 +74,96 @@
 </script>
 
 <!-- Scroll animations -->
-<script>
+<script defer>
+	// 创建一个单一的IntersectionObserver实例
+	let observer;
+
 	const initializeObserver = () => {
-		const observer = new IntersectionObserver((entries) => {
+		// 如果已经初始化过，先断开之前的观察
+		if (observer) {
+			observer.disconnect();
+		}
+
+		// 创建新的观察者
+		observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					entry.target.classList.add('scroll-animated')
 				}
 			})
-		})
+		}, {
+			rootMargin: '0px',
+			threshold: 0.1 // 降低阈值以提前触发动画
+		});
 
+		// 观察所有元素
 		const elements = document.querySelectorAll('.scroll-animation .col')
-
 		elements.forEach((element) => {
 			observer.observe(element)
 		})
 	}
 
-	document.addEventListener('DOMContentLoaded', () => {
-		initializeObserver()
-	})
+	// 使用一个函数处理所有事件
+	const handlePageEvent = () => {
+		requestAnimationFrame(initializeObserver);
+	};
 
-	document.addEventListener('astro:page-loaded', () => {
-		initializeObserver()
-	})
-
-	document.addEventListener('astro:after-swap', () => {
-		initializeObserver()
-	})
+	// 只在必要的事件上添加监听器
+	document.addEventListener('DOMContentLoaded', handlePageEvent);
+	document.addEventListener('astro:page-loaded', handlePageEvent);
+	document.addEventListener('astro:after-swap', handlePageEvent);
 </script>
 
 <!-- Light/Dark mode  -->
-<script>
-	if (document.documentElement.classList.contains('mode-auto')) {
+<script defer>
+	// 立即应用静态主题模式
+	if (document.documentElement.classList.contains('mode-dark')) {
+		document.documentElement.classList.add('dark');
+	} else if (document.documentElement.classList.contains('mode-light')) {
+		document.documentElement.classList.remove('dark');
+	} else if (document.documentElement.classList.contains('mode-auto')) {
+		// 自动主题模式的处理函数
 		const applyTheme = () => {
 			if (
 				localStorage.theme === 'dark' ||
 				(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
 			) {
-				document.documentElement.classList.add('dark')
+				document.documentElement.classList.add('dark');
 			} else {
-				document.documentElement.classList.remove('dark')
+				document.documentElement.classList.remove('dark');
 			}
-		}
+		};
+
+		// 主题切换器设置
 		const setupThemeSwitcher = () => {
-			const themeSwitcher = document.getElementById('theme-selector')
-			if (themeSwitcher) {
+			const themeSwitcher = document.getElementById('theme-selector');
+			if (themeSwitcher && !themeSwitcher.hasAttribute('data-theme-initialized')) {
+				// 标记已初始化，避免重复添加事件监听器
+				themeSwitcher.setAttribute('data-theme-initialized', 'true');
 				themeSwitcher.addEventListener('click', () => {
 					if (localStorage.theme === 'dark') {
-						localStorage.theme = 'light'
-						document.documentElement.classList.remove('dark')
+						localStorage.theme = 'light';
+						document.documentElement.classList.remove('dark');
 					} else {
-						localStorage.theme = 'dark'
-						document.documentElement.classList.add('dark')
+						localStorage.theme = 'dark';
+						document.documentElement.classList.add('dark');
 					}
-				})
+				});
 			}
-		}
-		document.addEventListener('DOMContentLoaded', () => {
-			applyTheme()
-			setupThemeSwitcher()
-		})
-		document.addEventListener('astro:page-loaded', () => {
-			applyTheme()
-			setupThemeSwitcher()
-		})
-		document.addEventListener('astro:after-swap', () => {
-			applyTheme()
-			setupThemeSwitcher()
-		})
-	} else if (document.documentElement.classList.contains('mode-dark')) {
-		document.documentElement.classList.add('dark')
-	} else if (document.documentElement.classList.contains('mode-light')) {
-		document.documentElement.classList.remove('dark')
+		};
+
+		// 统一处理函数
+		const handleThemeEvents = () => {
+			applyTheme();
+			setupThemeSwitcher();
+		};
+
+		// 尽早应用主题以避免闪烁
+		applyTheme();
+
+		// 事件监听
+		document.addEventListener('DOMContentLoaded', handleThemeEvents);
+		document.addEventListener('astro:page-loaded', handleThemeEvents);
+		document.addEventListener('astro:after-swap', handleThemeEvents);
 	}
 </script>
