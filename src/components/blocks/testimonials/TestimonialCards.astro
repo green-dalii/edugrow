@@ -18,7 +18,7 @@ import { Icon } from 'astro-icon/components'
 import testimonials from '../../../data/json-files/testimonialsData.json'
 ---
 
-<Section padding="both" classes="bg-primary-200 dark:bg-neutral-900">
+<Section padding="both" classes="bg-primary-300 dark:bg-neutral-900">
   <Row>
     <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
       <h2 class="text-pretty">真实的<strong>客户反馈</strong></h2>
@@ -30,7 +30,7 @@ import testimonials from '../../../data/json-files/testimonialsData.json'
   <Row>
     {testimonials.map((testimonial) => (
       <Col span="4">
-        <Card classes="h-full !bg-white dark:!bg-neutral-700">
+        <Card classes="h-full !bg-primary-50 dark:!bg-neutral-700">
           <CardBody>
             <div class="flex content-between flex-col h-full">
               <Icon
@@ -43,7 +43,7 @@ import testimonials from '../../../data/json-files/testimonialsData.json'
               <p class="flex-grow mb-6 text-sm italic text-neutral-600 dark:text-neutral-300">{testimonial.quote}</p>
               <div class="border-t border-neutral-100 dark:border-neutral-800 pt-4 mt-auto">
                 <div class="font-bold text-base text-neutral-800 dark:text-neutral-100">{testimonial.name}</div>
-                <div class="text-xs text-primary-500">{testimonial.info}</div>
+                <div class="text-xs text-primary-600">{testimonial.info}</div>
               </div>
             </div>
           </CardBody>

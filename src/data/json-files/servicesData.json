@@ -1,0 +1,91 @@
+[
+	{
+		"title": "留学前期规划",
+		"stage": "Step-1",
+		"text": "携手开启您的留学梦想之旅！予果予实将为您量身定制全面的留学规划蓝图，共同为未来的精彩篇章奠定坚实基础。",
+		"services": [
+			{"text": "量身定制的时间规划与背景提升方案", "icon": "twemoji:compass", "description": "根据您的个人情况制定专属规划，确保每一步都高效精准"},
+			{"text": "深度个人潜能探索", "icon": "twemoji:magnifying-glass-tilted-right", "description": "SWOT分析、性格测试等"},
+			{"text": "清晰直观的申请进程时间表与关键节点指南", "icon": "twemoji:calendar", "description": "帮助您把握每个重要时间节点，不错过任何关键机会"},
+			{"text": "专业GPA评估与提升建议", "icon": "twemoji:chart-increasing", "description": "全面分析学术表现，提供针对性的提升策略"},
+			{"text": "丰富多元的背景提升资源与机会", "icon": "twemoji:sparkles", "description": "提供实习、志愿者、科研等多样化资源，全方位提升申请竞争力"}
+		],
+		"image": "src/assets/services/service-01.webp"
+	},
+	{
+		"title": "申请材料准备",
+		"stage": "Step-2",
+		"text": "精心打造您的留学申请材料，让您的故事闪耀光芒！予果予实将全程陪伴，助您创作出独具个人魅力的申请材料，让招生官过目难忘。",
+		"services": [
+			{"text": "创意文书头脑风暴", "icon": "twemoji:brain", "description": "挖掘您独特的个人故事与经历"},
+			{"text": "专业文书创作指导", "icon": "twemoji:memo", "description": "让您的文书脱颖而出的个性化表达"},
+			{"text": "官方文件翻译与认证", "icon": "twemoji:scroll", "description": "确保每一份材料都完美呈现"},
+			{"text": "专业方向深度解析", "icon": "twemoji:microscope", "description": "找到最适合您的学术发展路径"},
+			{"text": "成功案例分享与借鉴", "icon": "twemoji:trophy", "description": "汲取前人智慧，少走弯路"}
+		],
+		"image": "src/assets/services/service-02.webp"
+	},
+	{
+		"title": "院校选择与申请提交",
+		"stage": "Step-3",
+		"text": "为您的未来找到最闪亮的舞台！予果予实将深入分析您的优势与梦想，精心挑选最匹配的院校，并确保您的申请完美无缺地送达招生官手中。",
+		"services": [
+			{"text": "精准院校匹配", "icon": "twemoji:classical-building", "description": "从地理位置到学术氛围，全方位考量您的理想选择"},
+			{"text": "贴心申请材料清单", "icon": "twemoji:check-mark-button", "description": "确保每一项准备工作都井然有序"},
+			{"text": "专业成绩单认证服务", "icon": "twemoji:page-with-curl", "description": "让您的学术成就得到官方认可"},
+			{"text": "语言考试成绩送分指导", "icon": "twemoji:bullseye", "description": "确保每一分都不被浪费"},
+			{"text": "全程网申指导与支持", "icon": "twemoji:laptop-computer", "description": "化繁为简，轻松应对"},
+			{"text": "纸质材料专业寄送", "icon": "twemoji:incoming-envelope", "description": "安全可靠，万无一失"}
+		],
+		"image": "src/assets/services/service-03.webp"
+	},
+	{
+		"title": "面试准备与录取确认",
+		"stage": "Step-4",
+		"text": "闪耀面试舞台，迎接梦想录取！予果予实将助您从容应对每一次面试挑战，并密切关注录取进展，确保您的留学之路畅通无阻。",
+		"services": [
+			{"text": "面试技巧与心态指导", "icon": "twemoji:speaking-head", "description": "让您自信从容地展现最佳状态"},
+			{"text": "实时录取进度追踪", "icon": "twemoji:hourglass-done", "description": "第一时间获取最新消息"},
+			{"text": "专业录取沟通与跟进", "icon": "twemoji:telephone-receiver", "description": "确保您的申请得到应有的重视"},
+			{"text": "录取通知书与押金办理指导", "icon": "twemoji:envelope", "description": "细致入微的确认服务"},
+			{"text": "理想住宿安排建议", "icon": "twemoji:house", "description": "为您的留学生活开启舒适之旅"}
+		],
+		"image": "src/assets/services/service-04.webp"
+	},
+	{
+		"title": "签证办理",
+		"stage": "Step-5",
+		"text": "为您的留学梦想开启绿色通道！予果予实将用专业经验和细致服务，让签证申请变得轻松简单，助您顺利踏上留学征程。",
+		"services": [
+			{"text": "全面签证材料准备指南", "icon": "twemoji:passport-control", "description": "一步到位，避免反复补材料"},
+			{"text": "贴心签证表格填写服务", "icon": "twemoji:clipboard", "description": "专业审核，确保无误"},
+			{"text": "黄金签证面试时段预约", "icon": "twemoji:spiral-calendar", "description": "提高面签成功率"}
+		],
+		"image": "src/assets/services/service-05.webp"
+	},
+	{
+		"title": "行前准备与入学指导",
+		"stage": "Step-6",
+		"text": "开启您的精彩留学生活！予果予实将为您提供全方位的行前准备与入学支持，让您的海外生活从第一天起就充满信心与期待。",
+		"services": [
+			{"text": "优质机票预订建议", "icon": "twemoji:airplane", "description": "为您的旅程选择最佳出行方案"},
+			{"text": "贴心行前离境指南", "icon": "twemoji:luggage", "description": "从行李打包到入境手续，事无巨细"},
+			{"text": "专业入学选课指导", "icon": "twemoji:man-student-light-skin-tone", "description": "开启理想的学术旅程"},
+			{"text": "安心接机安排建议", "icon": "twemoji:automobile", "description": "让您的到达轻松无忧"}
+		],
+		"image": "src/assets/services/service-06.webp"
+	},
+	{
+		"title": "留学生活与持续关怀",
+		"stage": "Step-7",
+		"text": "留学之路漫长而精彩，予果予实的陪伴不止于此！我们将持续为您提供温暖支持与专业指导，让您在异国他乡也能感受如家般的温暖与关怀。",
+		"services": [
+			{"text": "定期学业关怀", "icon": "twemoji:graduation-cap", "description": "分享学习技巧与资源，助您学业有成"},
+			{"text": "职业发展指导", "icon": "twemoji:briefcase", "description": "提供实习与就业资讯，规划未来职业道路"},
+			{"text": "心理健康支持", "icon": "twemoji:red-heart", "description": "帮助您应对文化冲击"},
+			{"text": "校友资源对接", "icon": "twemoji:handshake", "description": "连接优秀校友网络，拓展人脉资源"},
+			{"text": "回国发展咨询", "icon": "twemoji:airplane-arrival", "description": "为您的归国计划提供专业建议"}
+		],
+		"image": "src/assets/services/service-07.webp"
+	}
+]

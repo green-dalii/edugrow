@@ -26,6 +26,8 @@ type Props = {
 	name: string
 	title: string
 	avatar?: any
+	budget: string[]
+	budgetIcon: string[]
 	achievements: string[]
 	classes?: string
 }
@@ -33,6 +35,8 @@ const {
 	name,
 	title,
 	avatar,
+	budget,
+	budgetIcon,
 	achievements,
 	classes = '!shadow-none border border-neutral-100 dark:border-neutral-800 h-full'
 } = Astro.props
@@ -52,8 +56,20 @@ const {
 			</div>
 		</div>
 		<CardBody classes="founder-info md:!px-16 md:!py-10 isolate z-10">
-			<h3 class="founder-name">{name}</h3>
-			<Badge type="primary" name={title} classes="mb-3 block md:inline-block" />
+			<div class="flex flex-col gap-2 md:flex-row justify-between">
+				<div>
+					<h3 class="founder-name">{name}</h3>
+					<Badge type="primary" name={title} classes="mb-3 block md:inline-block" />
+				</div>
+				<div class="flex flex-row self-center gap-8">
+					{budget?.map((item, index) => (
+						<div class="flex flex-col items-center mb-2">
+							<Icon name={budgetIcon[index]} class="text-4xl mb-2 text-primary-600 dark:text-primary-400" />
+							<span class="text-xs text-primary-600 dark:text-primary-400">{item}</span>
+						</div>
+					))}
+				</div>
+			</div>
 			<ul class="founder-achievements">
 				{achievements.map((achievement) => (
 					<li>{achievement}</li>
@@ -77,11 +93,11 @@ const {
 	}
 
 	.founder-image-container {
-		@apply flex justify-center md:w-2/5 md:sticky md:top-24 h-full;
+		@apply flex justify-center md:w-full lg:w-2/5 md:sticky h-full;
 	}
 
 	.founder-image-wrapper {
-		@apply relative overflow-hidden bg-primary-300 dark:bg-primary-600 w-full h-full max-w-lg max-h-96 md:max-h-[410px] mx-auto md:mx-0;
+		@apply relative overflow-hidden bg-primary-300 dark:bg-primary-600 w-full h-full max-w-xl max-h-96 md:max-h-[410px] mx-auto md:mx-0;
 		@apply rounded-xl;
 	}
 

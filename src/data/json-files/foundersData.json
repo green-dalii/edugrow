@@ -3,6 +3,8 @@
     "name": "杨老师 / Tina Yang",
     "title": "予果予实联合创始人",
     "avatar": "/src/assets/members/tina.png",
+    "budget": ["金牌顾问", "名校专家", "全程导师"],
+    "budgetIcon": ["hugeicons:champion", "hugeicons:school", "hugeicons:ok-finger"],
     "achievements": [
       "2012 年进入留学行业从业至今",
       "前新东方前途出国年度销售冠军",
@@ -17,6 +19,8 @@
     "name": "刘老师 / Frances Liu",
     "title": "予果予实联合创始人",
     "avatar": "/src/assets/members/liuni.png",
+    "budget": ["金牌顾问", "名校专家", "文书大拿"],
+    "budgetIcon": ["hugeicons:champion", "hugeicons:school", "hugeicons:quill-write-02"],
     "achievements": [
       "拥有三年多海外英语口译笔译工作经历",
       "前新东方前途出国优秀员工",
@@ -30,12 +34,14 @@
     "name": "牛老师 / Nuri Niu",
     "title": "予果予实联合创始人",
     "avatar": "/src/assets/members/niurui.png",
+    "budget": ["金牌顾问", "名校专家", "规划能手"],
+    "budgetIcon": ["hugeicons:champion", "hugeicons:school", "hugeicons:chart-breakout-circle"],
     "achievements": [
       "2012年进入留学行业从业至今，理工科专业背景，逻辑缜密",
       "前新通留学销售冠军、优秀员工",
       "前新通留学美加大区咨询主管",
       "前新通留学管理咨询MINI远航优秀毕业生",
-      "USNEWS官方认证咨询师",
+      "US NEWS官方认证咨询师",
       "应邀参加香港大学学术交流及金融实训",
       "多次应邀出访海外名校，录取名校无数，包括斯坦福大学、剑桥大学、哥伦比亚大学、香港大学、新加坡国立大学、苏黎世联邦理工学院等"
     ]

@@ -39,12 +39,12 @@ export const navigationBarData: NavData = {
 	},
 	navItems: [
 		{ name: '首页', link: '/' },
+		{ name: '服务流程', link: '/service' },
 		{
 			name: "留学案例",
 			link: "/cases"
 		},
 		// { name: '价格', link: '/pricing' },
-		{ name: '服务', link: '/service' },
 		{
 			name: '留学资源',
 			link: '#',

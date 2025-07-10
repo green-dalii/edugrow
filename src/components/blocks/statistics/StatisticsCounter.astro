@@ -1,0 +1,155 @@
+---
+// Statistics Counter Section
+// ------------
+// Description: A section displaying key statistics with animated counters
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import { Icon } from 'astro-icon/components'
+
+// - Testimonial background
+import testimonialBackground from '../../../assets/testimonial-bg-2.webp'
+
+// Statistics data
+const statistics = [
+	{
+		title: '顾问经验年限',
+		value: 10,
+		icon: 'hugeicons:elearning-exchange',
+		suffix: '+',
+		delay: 400,
+		duration: 1000 // 动画持续时间（毫秒）
+	},
+	{
+		title: '服务学生',
+		value: 1000,
+		icon: 'hugeicons:students',
+		suffix: '+',
+		delay: 600,
+		duration: 2000 // 动画持续时间（毫秒）
+	},
+	{
+		title: 'QS TOP50录取率',
+		value: 93,
+		icon: 'hugeicons:mortarboard-01',
+		suffix: '%',
+		delay: 800,
+		duration: 2000 // 动画持续时间（毫秒）
+	},
+	{
+		title: 'QS TOP100录取率',
+		value: 98,
+		icon: 'hugeicons:mortarboard-01',
+		suffix: '%',
+		delay: 800,
+		duration: 2000 // 动画持续时间（毫秒）
+	}
+]
+---
+
+<Section id="statistics" bg={testimonialBackground} bgPosition="left" classes="mb-20">
+	<Row>
+		<Col span="12" align="center" classes="mb-8 max-w-4xl mx-auto">
+			<h2 class="text-pretty text-white dark:!text-neutral-800">我们的成绩</h2>
+			<p class="text-lg text-white dark:!text-neutral-800">予果予实始终坚持高质量服务，助力学子实现留学梦想</p>
+		</Col>
+	</Row>
+	<Row>
+		{statistics.map((stat) => (
+			<Col span="3" spanTablet="6" spanMobile="6" classes="">
+				<div class="flex flex-col items-center justify-center p-4">
+					<div class="stat-icon mb-4 p-4 rounded-full bg-primary-200/50 dark:bg-neutral-800/80 text-primary-600 dark:text-primary-300">
+						<Icon name={stat.icon} class="w-8 h-8 text-neutral-600 dark:text-primary-300" />
+					</div>
+					<div class="stat-value-container flex items-end justify-center">
+						<span 
+							class="stat-value text-5xl md:text-7xl font-extrabold text-neutral-700 mb-2" 
+							data-target={stat.value}
+							data-suffix={stat.suffix}
+							data-delay={stat.delay}
+							data-duration={stat.duration}
+						>
+							0
+						</span>
+						<span class="stat-suffix text-2xl md:text-4xl font-bold text-neutral-700 mb-2">{stat.suffix}</span>
+					</div>
+					<h3 class="stat-title text-xs md:text-sm font-semibold text-neutral-700 dark:!text-neutral-700">[ {stat.title} ]</h3>
+				</div>
+			</Col>
+		))}
+	</Row>
+</Section>
+
+<script>
+// 数字增长动画函数
+function animateCounter(element: HTMLElement, target: number, duration: number = 2000, delay: number = 0): void {
+	const start: number = 0;
+	let startTimestamp: number | null = null;
+	
+	const step = (timestamp: number): void => {
+		if (!startTimestamp) startTimestamp = timestamp;
+		if (timestamp - startTimestamp < delay) {
+			window.requestAnimationFrame(step);
+			return;
+		}
+		
+		const progress: number = Math.min((timestamp - startTimestamp - delay) / duration, 1);
+		const easeProgress: number = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+		const currentValue: number = Math.floor(easeProgress * (target - start) + start);
+		
+		// 只更新数字部分，不包含后缀
+		element.textContent = `${currentValue}`;
+		
+		if (progress < 1) {
+			window.requestAnimationFrame(step);
+		}
+	};
+	
+	window.requestAnimationFrame(step);
+}
+
+// 检测元素是否在视口中
+function isElementInViewport(el: Element): boolean {
+	const rect = el.getBoundingClientRect();
+	return (
+		rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+		rect.bottom >= 0
+	);
+}
+
+// 初始化计数器
+function initCounters(): void {
+	const counters: NodeListOf<HTMLElement> = document.querySelectorAll('.stat-value');
+	let animated: boolean = false;
+	
+	function checkAndAnimate(): void {
+		if (animated) return;
+		
+		const statisticsSection: HTMLElement | null = document.getElementById('statistics');
+		if (statisticsSection && isElementInViewport(statisticsSection)) {
+			animated = true;
+			
+			counters.forEach((counter: HTMLElement) => {
+				const target: number = parseInt(counter.getAttribute('data-target') || '0', 10);
+				const delay: number = parseInt(counter.getAttribute('data-delay') || '0', 10);
+				const duration: number = parseInt(counter.getAttribute('data-duration') || '2000', 10);
+				animateCounter(counter, target, duration, delay);
+			});
+		}
+	}
+	
+	// 初始检查
+	checkAndAnimate();
+	
+	// 滚动时检查
+	window.addEventListener('scroll', checkAndAnimate, { passive: true });
+}
+
+// 在页面加载和Astro页面切换时初始化
+document.addEventListener('DOMContentLoaded', initCounters);
+document.addEventListener('astro:page-load', initCounters);
+</script>

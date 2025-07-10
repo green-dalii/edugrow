@@ -96,16 +96,51 @@
 			threshold: 0.1 // 降低阈值以提前触发动画
 		});
 
+		// 为特定元素创建单独的观察者（使用更低的阈值和更大的 rootMargin）
+		const feedObserver = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('scroll-animated')
+				}
+			})
+		}, {
+			rootMargin: '100px 0px', // 提前100px触发
+			threshold: 0.01 // 极低的阈值，几乎一出现就触发
+		});
+
 		// 观察所有元素
 		const elements = document.querySelectorAll('.scroll-animation .col')
 		elements.forEach((element) => {
-			observer.observe(element)
+			// 检查元素是否在 SimpleFeed/BasicFeed 组件内
+			const isInFeed = element.closest('#services') !== null;
+			
+			// 使用不同的观察器
+			if (isInFeed) {
+				feedObserver.observe(element);
+			} else {
+				observer.observe(element);
+			}
 		})
 	}
 
 	// 使用一个函数处理所有事件
 	const handlePageEvent = () => {
-		requestAnimationFrame(initializeObserver);
+		// 使用 requestAnimationFrame 确保 DOM 已完全加载
+		requestAnimationFrame(() => {
+			initializeObserver();
+			
+			// 对于 changelog 页面，额外检查并确保元素可见性
+			const changelogSection = document.getElementById('changelog');
+			if (changelogSection) {
+				const feedCols = changelogSection.querySelectorAll('.col');
+				feedCols.forEach(col => {
+					// 如果元素已经在视口中但没有动画，立即添加动画类
+					if (!col.classList.contains('scroll-animated')) {
+						col.classList.add('scroll-animated');
+					}
+				});
+			}
+		});
 	};
 
 	// 只在必要的事件上添加监听器

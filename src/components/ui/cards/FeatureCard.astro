@@ -31,5 +31,5 @@ const { title, subtitle, image, link, classes } = Astro.props
 	link={link}
 	image={image}
 	type="image-bottom"
-	classes={`!bg-primary-50 hover:!bg-primary-100 dark:hover:!bg-neutral-800 !shadow-none hover:!shadow-lg dark:!bg-neutral-900 h-full justify-between border border-neutral-100 dark:border-neutral-800 !transition-all !duration-300 !ease-out !transform !translate-y-0 !scale-100 hover:!-translate-y-2 hover:!scale-[1.02] ${classes || ''}`}
+	classes={`bg-gradient-to-t from-primary-200 to-primary-50 hover:bg-gradient-to-t hover:from-primary-200 hover:to-white dark:bg-gradient-to-t dark:from-neutral-950 dark:to-neutral-900 hover:dark:bg-gradient-to-t hover:dark:from-neutral-900 hover:dark:to-neutral-800 !shadow-none hover:!shadow-lg h-full justify-between border border-neutral-100 dark:border-neutral-800 !transition-all !duration-300 !ease-out !transform !translate-y-0 !scale-100 hover:!-translate-y-2 hover:!scale-[1.02] ${classes || ''}`}
 />

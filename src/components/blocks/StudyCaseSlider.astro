@@ -62,7 +62,7 @@ function getAvatar(path: string): ImageMetadata {
       {/* 渲染卡片 */}
       {studyCasesData.map((item) => (
         <div class="slider-item min-w-[280px] max-w-[280px] flex-shrink-0">
-          <Card classes="h-full bg-primary-50 hover:bg-primary-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 hover:shadow-lg hover:shadow-neutral-700/10 dark:hover:shadow-neutral-950/20 transition-all duration-300 ease-out transform translate-y-0 scale-100 hover:-translate-y-2 hover:scale-[1.02]">
+          <Card classes="h-full bg-primary-100 hover:bg-primary-50 dark:bg-neutral-800 dark:hover:bg-neutral-700 hover:shadow-lg hover:shadow-neutral-700/10 dark:hover:shadow-neutral-950/20 transition-all duration-300 ease-out transform translate-y-0 scale-100 hover:-translate-y-2 hover:scale-[1.02]">
             <div class="flex flex-col p-6 relative overflow-hidden h-full justify-between">
               {/* 头像与姓名在同一行，左对齐 */}
               <div class="flex items-center mb-4 w-full">
@@ -80,18 +80,18 @@ function getAvatar(path: string): ImageMetadata {
                 </div>
                 
                 {/* 学生姓名 */}
-                <h3 class="font-bold text-xl text-neutral-800 dark:text-white">{item.name}</h3>
+                <h3 class="font-bold text-xl text-neutral-500 dark:text-white">{item.name}</h3>
               </div>
               
               {/* 卡片内容 - 使用isolate创建新的层叠上下文，z-10确保内容在水印上方 */}
               <CardBody classes="!p-0 w-full isolate z-10">
                 {/* 大学信息 - 左对齐 */}
                 <div class="mb-3 pb-2">
-                  <div class="flex items-center text-primary-500 dark:text-primary-400 text-lg font-semibold mb-1">
+                  <div class="flex items-center text-neutral-600 dark:text-primary-400 text-lg font-semibold mb-1">
                     <Icon name="fluent:building-bank-16-filled" class="w-4 h-4 mr-1.5 flex-shrink-0" />
                     <span class="break-words">{item.university}</span>
                   </div>
-                  <div class="text-xs text-neutral-500 dark:text-neutral-400 italic break-words pl-5.5">
+                  <div class="text-xs text-primary-600 dark:text-neutral-400 italic break-words pl-5.5">
                     {item.university_en}
                   </div>
                 </div>
@@ -122,7 +122,7 @@ function getAvatar(path: string): ImageMetadata {
       {/* 克隆第一组卡片用于无缝循环 */}
       {studyCasesData.map((item) => (
         <div class="slider-item min-w-[280px] max-w-[280px] flex-shrink-0">
-          <Card classes="h-full bg-primary-50 hover:bg-primary-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 hover:shadow-lg hover:shadow-neutral-700/10 dark:hover:shadow-neutral-950/20 transition-all duration-300 ease-out transform translate-y-0 scale-100 hover:-translate-y-2 hover:scale-[1.02]">
+          <Card classes="h-full bg-primary-100 hover:bg-primary-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 hover:shadow-lg hover:shadow-neutral-700/10 dark:hover:shadow-neutral-950/20 transition-all duration-300 ease-out transform translate-y-0 scale-100 hover:-translate-y-2 hover:scale-[1.02]">
             <div class="flex flex-col p-6 relative overflow-hidden h-full justify-between">
               {/* 头像与姓名在同一行，左对齐 */}
               <div class="flex items-center mb-4 w-full">
@@ -140,18 +140,18 @@ function getAvatar(path: string): ImageMetadata {
                 </div>
                 
                 {/* 学生姓名 */}
-                <h3 class="font-bold text-xl text-neutral-800 dark:text-white">{item.name}</h3>
+                <h3 class="font-bold text-xl text-neutral-500 dark:text-white">{item.name}</h3>
               </div>
               
               {/* 卡片内容 */}
               <CardBody classes="!p-0 w-full isolate z-10">
                 {/* 大学信息 - 左对齐 */}
                 <div class="mb-3 pb-2">
-                  <div class="flex items-center text-primary-500 dark:text-primary-400 text-lg font-semibold mb-1">
+                  <div class="flex items-center text-neutral-500 dark:text-primary-400 text-lg font-semibold mb-1">
                     <Icon name="fluent:building-bank-16-filled" class="w-4 h-4 mr-1.5 flex-shrink-0" />
                     <span class="break-words">{item.university}</span>
                   </div>
-                  <div class="text-xs text-neutral-500 dark:text-neutral-400 italic break-words pl-5.5">
+                  <div class="text-xs text-primary-600 dark:text-neutral-400 italic break-words pl-5.5">
                     {item.university_en}
                   </div>
                 </div>
@@ -184,7 +184,7 @@ function getAvatar(path: string): ImageMetadata {
 <div class="mx-auto px-6">
   <Row>
     <Col span="12" align="center" classes="mb-24 mx-auto">
-      <Button size="lg" link="/cases">了解更多</Button>
+      <Button size="lg" link="/cases">了解更多案例</Button>
     </Col>
   </Row>
 </div>

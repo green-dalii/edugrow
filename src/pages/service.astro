@@ -3,21 +3,15 @@
 // - Layout
 import Layout from '../layouts/Layout.astro'
 // - UI
-import Feature from '../components/blocks/features/FeatureSticky.astro'
 import Hero from '../components/blocks/hero/PageHeader.astro'
-import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
+import SimpleFeed from '../components/blocks/feeds/BasicFeed.astro'
 import CTA from '../components/blocks/CTA/BasicDark.astro'
-
+import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
 // - Testimonial background
 import testimonialBackground from '../assets/testimonial-bg.webp'
 
 // Data
-import featuresData from '../data/json-files/featuresData.json'
-// - Feature Categories
-const featuresPlan = featuresData.filter((feature) => feature.category === '规划与准备')
-const featuresEssay = featuresData.filter((feature) => feature.category === '申请与文书')
-const featuresVisa = featuresData.filter((feature) => feature.category === '签证与流程')
-const featuresService = featuresData.filter((feature) => feature.category === '境外与职业发展')
+import servicesData from '../data/json-files/servicesData.json'
 
 // Content
 // - SEO
@@ -35,28 +29,13 @@ const header = {
 
 <Layout title={SEO.title} description={SEO.description}>
 	<Hero title={header.title} text={header.text} />
-	<Feature
-		title="规划与准备"
-		text="科学规划申请时间、背景提升、考试安排与选校建议，助你打好留学基础。"
-		data={featuresPlan}
-	/>
-	<Feature
-		title="申请与文书"
-		text="海外名校外教一对一文书指导，深度挖掘个人亮点，提升录取竞争力。"
-		data={featuresEssay}
-		classes="bg-primary-50 dark:bg-neutral-900"
-	/>
-	<Feature
-		title="签证与流程"
-		text="全流程申请进度把控，签证材料准备与面试辅导，确保顺利开启留学之旅。"
-		data={featuresVisa}
-	/>
-	<Feature
-		title="境外与职业发展"
-		text="行前培训、海外生活指导及就业分析，助你顺利适应新环境并规划未来发展。"
-		data={featuresService}
-		classes="bg-primary-50 dark:bg-neutral-900"
-	/>
+	<SimpleFeed data={servicesData as unknown as {
+		title: string;
+		stage?: string;
+		text: string;
+		image?: string;
+		services?: string[];
+	}[]} />
 	<Testimonial bg={testimonialBackground} bgPosition="right" blockquote="予果予实的老师不仅专业，更像朋友一样陪伴我整个申请过程，让我收获了成长与自信。" figcaption="王同学" cite="2023年美国本科录取学员" />
 	<CTA />
 </Layout>

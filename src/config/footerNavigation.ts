@@ -50,7 +50,7 @@ export const footerNavigationData: FooterData = {
 			category: '留学相关',
 			subCategories: [
 				{
-					subCategory: '留学服务',
+					subCategory: '服务流程',
 					subCategoryLink: '/service'
 				},
 				{
