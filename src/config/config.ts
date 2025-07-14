@@ -21,13 +21,13 @@ export interface Config {
 }
 
 export const configData: Config = {
-	siteTitle: '予果予实（EDUGROW）｜留学规划与成长陪伴',
+	siteTitle: '予果予实（EDUGROW）| 专业留学规划与成长陪伴服务',
 	siteDescription:
-		'予果予实（EDUGROW）——专注于留学规划与成长陪伴的专业机构，三位资深顾问团队，助力学子实现全球升学梦想。用心陪伴，成就未来。',
+		'予果予实（EDUGROW）是专注于提供全流程留学规划与成长陪伴的专业机构，由三位资深顾问组成，为中国学子提供个性化留学方案，覆盖美英澳加新港等主流留学国家，助力实现全球名校梦想。',
 	ogImage: '/og.jpg',
 	logo: {
 		src: '/logo.svg',
-		alt: 'EDUGROW logo'
+		alt: 'EDUGROW 予果予实留学'
 	},
 	canonical: true,
 	noindex: false,
