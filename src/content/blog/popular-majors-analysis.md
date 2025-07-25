@@ -2,7 +2,7 @@
 title: '2025全球热门留学专业与就业前景分析'
 pubDate: 2025-05-28
 description: "面对瞬息万变的全球就业市场，如何选择既符合个人兴趣又具备良好就业前景的留学专业？本文深入分析当下最具发展潜力的留学专业，帮助学生做出明智的专业选择。"
-author: '予果予实团队'
+author: 'EDUGROW予果予实团队'
 image: './images/popular-majors-analysis.png'
 tags: ['留学规划', '就业发展']
 ---

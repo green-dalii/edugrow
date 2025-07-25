@@ -2,7 +2,7 @@
 title: '留学生心理健康指南：如何应对海外生活的情绪挑战'
 pubDate: 2025-02-01
 description: "留学生活充满挑战，文化冲击、学业压力和思乡情绪常导致心理困扰。本文提供实用的心理调适策略，帮助留学生建立健康的心态，从容应对海外生活中的各种情绪挑战。"
-author: '予果予实团队'
+author: 'EDUGROW予果予实团队'
 image: './images/mental-health-guide-cover.png'
 tags: ['心理健康', '留学环境', '留学规划']
 relatedPosts: ['study-abroad-environment']

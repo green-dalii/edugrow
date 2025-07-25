@@ -1,7 +1,7 @@
 {
   "name": "edgrow-website",
   "type": "module",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -23,9 +23,12 @@
     "@playform/compress": "^0.2.0",
     "astro": "^5.7.2",
     "astro-icon": "^1.1.0",
+    "astro-mermaid": "^1.0.4",
+    "mermaid": "^11.9.0",
     "prettier": "^3.3.2",
     "prettier-plugin-astro": "^0.14.0",
     "prettier-plugin-tailwindcss": "^0.6.4",
+    "rehype-mermaid": "^3.0.0",
     "sharp": "^0.33.4",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5"

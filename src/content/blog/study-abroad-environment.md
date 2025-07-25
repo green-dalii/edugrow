@@ -2,7 +2,7 @@
 title: '留学生活环境全解析：各国文化差异与适应指南'
 pubDate: 2025-01-04
 description: "不同国家的留学环境各有特色，从饮食习惯到社交方式，从气候适应到生活起居，本文为您详细解析主流留学国家的文化差异，助您提前做好心理准备，轻松适应海外生活。"
-author: '予果予实团队'
+author: 'EDUGROW予果予实团队'
 image: './images/study-abroad-environment.png'
 tags: ['留学环境', '心理健康']
 relatedPosts: ['mental-health-guide']

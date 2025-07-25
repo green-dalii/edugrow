@@ -4,6 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import playformCompress from "@playform/compress";
+import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,6 +13,10 @@ export default defineConfig({
     tailwind(),
     icon(),
     sitemap(),
+    mermaid({
+      theme: 'base',
+      autoTheme: true
+    }),
     // 使用Partytown将第三方脚本移至Web Worker
     partytown({
       // 配置Partytown以优化第三方脚本
