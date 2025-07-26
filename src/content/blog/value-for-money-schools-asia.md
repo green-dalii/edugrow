@@ -4,7 +4,7 @@ pubDate: 2025-05-10
 description: "世界大学排名并非留学选校的唯一标准，许多排名不高但教学质量出色、就业前景良好的院校往往被忽视。本文揭秘那些性价比极高的留学院校，帮助学生做出更明智的选择。"
 author: 'EDUGROW予果予实团队'
 image: './images/value-for-money-schools-asia.png'
-tags: ['留学规划', '留学财务','亚洲']
+tags: ['申请规划', '留学财务','亚洲']
 relatedPosts: ['value-for-money-schools-us', 'value-for-money-schools-au', 'value-for-money-schools-eur', 'value-for-money-schools-ca', 'financial-planning-asia']
 ---
 

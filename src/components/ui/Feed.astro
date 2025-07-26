@@ -17,6 +17,7 @@ const serviceImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/
 type Props = {
 	data: Array<{
 		title: string
+		title_en?: string
 		stage?: string
 		text?: string
 		image?: string
@@ -32,12 +33,15 @@ const { data, classes } = Astro.props
 		data.map((item) => (
 			<li role="article" class="feed__item">
 				<div class="feed__item-stage-wrapper">
-					<span class="feed__item-stage"> {item.title}</span>
+					<span class="feed__item-stage">
+						{item.title}
+						{item.title_en && <div class="feed__item-stage-en">{item.title_en}</div>}
+					</span>
 				</div>
 				<div class="feed__item-container">
 					<h4 class="feed__item-header">
 						{item.title}
-						<span class="text-lg"> / {item.stage}</span>
+						{item.title_en && <div class="feed__item-header-en">{item.title_en} / {item.stage}</div>}
 					</h4>
 					{item.image && (
 						<div class="feed__item-image">
@@ -120,10 +124,16 @@ const { data, classes } = Astro.props
 		@apply hidden w-full lg:block lg:w-1/3 text-end;
 	}
 	.feed__item-stage {
-		@apply sticky top-48 text-4xl font-bold text-primary-500 z-10;
+		@apply sticky top-48 text-4xl font-bold text-primary-500 z-10 flex flex-col;
+	}
+	.feed__item-stage-en {
+		@apply text-base font-medium text-primary-700 mt-1;
 	}
 	.feed__item-header {
 		@apply text-2xl font-bold text-primary-500 lg:hidden;
+	}
+	.feed__item-header-en {
+		@apply text-lg font-medium text-primary-700 mt-1;
 	}
 	.feed__item-text {
 		@apply max-w-lg font-medium;

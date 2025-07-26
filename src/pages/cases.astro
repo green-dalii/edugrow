@@ -12,6 +12,7 @@ import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
 import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
 import LogoWatermark from '../components/ui/LogoWatermark.astro'
+import FilterButtons from '../components/ui/FilterButtons.astro'
 
 // 导入水印图片
 import eduGrowLogo from '../assets/logo_white.svg'
@@ -55,12 +56,12 @@ const header = {
 }
 
 // 提取所有专业分类
-const getAllMajorCategories = () => {
-	const categories = new Set()
+const getAllMajorCategories = (): string[] => {
+	const categories = new Set<string>()
 	Object.values(casesByCountry).forEach((cases) => {
 		cases.forEach((item) => {
 			if (item.major_category) {
-				categories.add(item.major_category)
+				categories.add(item.major_category as string)
 			}
 		})
 	})
@@ -86,68 +87,22 @@ const majorCategories = getAllMajorCategories()
 				<div class="mb-12">
 					<div class="flex flex-col space-y-6">
 						<!-- 国家过滤器 -->
-						<div
-							class="flex flex-col items-center justify-between lg:flex-row lg:gap-8"
-						>
-							<h4
-								class="mb-3 flex items-center justify-center text-left text-base font-medium lg:mb-0"
-							>
-								<Icon name="fluent:globe-16-filled" class="mr-1.5 h-6 w-6" />
-								<span>按国家/地区筛选</span>
-							</h4>
-							<div class="flex flex-wrap justify-center gap-3">
-								<button
-									data-filter="all"
-									data-filter-type="country"
-									class="filter-btn filter-active rounded-full bg-primary-100 px-4 py-2 text-base text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800"
-								>
-									全部
-								</button>
-								{
-									Object.keys(casesByCountry).map((country) => (
-										<button
-											data-filter={country}
-											data-filter-type="country"
-											class="filter-btn rounded-full bg-primary-100 px-4 py-2 text-base text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800"
-										>
-											{country}
-										</button>
-									))
-								}
-							</div>
-						</div>
+						<FilterButtons
+							title="按国家/地区筛选"
+							iconName="fluent:globe-16-filled"
+							filterType="country"
+							items={Object.keys(casesByCountry)}
+							isPrimary={true}
+						/>
 
 						<!-- 专业分类过滤器 -->
-						<div
-							class="flex flex-col items-center justify-between lg:flex-row lg:gap-8"
-						>
-							<h4
-								class="mb-3 flex items-center justify-center text-left text-base font-medium lg:mb-0"
-							>
-								<Icon name="fluent:book-16-filled" class="mr-1.5 h-6 w-6" />
-								<span>按专业类别筛选</span>
-							</h4>
-							<div class="flex flex-wrap justify-center gap-3">
-								<button
-									data-filter="all"
-									data-filter-type="major"
-									class="filter-btn filter-active rounded-full bg-neutral-100 px-4 py-2 text-base text-neutral-700 transition-colors hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
-								>
-									全部
-								</button>
-								{
-									majorCategories.map((category) => (
-										<button
-											data-filter={category}
-											data-filter-type="major"
-											class="filter-btn rounded-full bg-neutral-100 px-4 py-2 text-base text-neutral-700 transition-colors hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
-										>
-											{category}
-										</button>
-									))
-								}
-							</div>
-						</div>
+						<FilterButtons
+							title="按专业类别筛选"
+							iconName="fluent:book-16-filled"
+							filterType="major"
+							items={majorCategories}
+							isPrimary={false}
+						/>
 					</div>
 				</div>
 			</Col>
@@ -260,12 +215,6 @@ const majorCategories = getAllMajorCategories()
 </Layout>
 
 <style>
-	/* 筛选按钮样式 */
-	.filter-active {
-		font-weight: bold;
-		box-shadow: 0 0 0 2px currentColor;
-	}
-
 	/* 案例卡片动画 */
 	.case-item {
 		transition: all 0.3s ease-out;

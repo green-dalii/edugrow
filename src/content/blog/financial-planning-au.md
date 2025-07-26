@@ -4,7 +4,7 @@ pubDate: 2025-03-04
 description: "留学是一项重要的教育投资，不同国家和地区的留学成本差异显著。本文从学费、生活费、奖学金机会和就业回报等多角度，全面分析澳洲留学目的地的财务状况，帮助学生和家长做出明智的财务规划。"
 author: 'EDUGROW予果予实团队'
 image: './images/financial-planning-au.png'
-tags: ['留学财务', '留学规划', '澳洲']
+tags: ['留学财务', '申请规划', '澳洲']
 relatedPosts: ['financial-planning-eur', 'financial-planning-ca', 'financial-planning-us', 'financial-planning-asia', 'value-for-money-schools-au']
 ---
 

@@ -1,0 +1,56 @@
+---
+// FilterButtons.astro
+// 一个可复用的过滤器按钮组件，用于显示一组过滤按钮
+
+import { Icon } from 'astro-icon/components'
+
+type Props = {
+  title: string                // 过滤器标题
+  iconName: string            // 图标名称
+  filterType: string          // 过滤器类型 (如 'country', 'major')
+  items: Array<string>        // 过滤项列表
+  isPrimary?: boolean         // 是否使用主色调样式 (默认为true)
+}
+
+const { title, iconName, filterType, items, isPrimary = true } = Astro.props
+
+// 根据isPrimary属性确定按钮样式类
+const buttonClass = isPrimary 
+  ? "filter-btn rounded-full bg-primary-100 px-4 py-2 text-base text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800"
+  : "filter-btn rounded-full bg-neutral-100 px-4 py-2 text-base text-neutral-700 transition-colors hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+---
+
+<style>
+  /* 筛选按钮激活样式 */
+  :global(.filter-active) {
+    font-weight: bold;
+    box-shadow: 0 0 0 2px currentColor;
+  }
+</style>
+
+<div class="flex flex-col items-center justify-between lg:flex-row lg:gap-8">
+  <h4 class="mb-3 flex items-center justify-center text-left text-lg font-medium lg:mb-0">
+    <Icon name={iconName} class="mr-1.5 h-6 w-6" />
+    <span>{title}</span>
+  </h4>
+  <div class="flex flex-wrap justify-center md:justify-end gap-3">
+    <button
+      data-filter="all"
+      data-filter-type={filterType}
+      class={`${buttonClass} filter-active`}
+    >
+      全部
+    </button>
+    {
+      items.map((item) => (
+        <button
+          data-filter={item}
+          data-filter-type={filterType}
+          class={buttonClass}
+        >
+          {item}
+        </button>
+      ))
+    }
+  </div>
+</div>

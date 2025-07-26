@@ -3,7 +3,7 @@
 
 // Components
 // - UI
-import Badge from '../Badge.astro'
+import FilterButtons from '../FilterButtons.astro'
 
 //Data
 import { getCollection } from 'astro:content'
@@ -25,23 +25,54 @@ if (pathSegments.length >= 2 && pathSegments[1] === 'tags' && pathSegments.lengt
 }
 ---
 
-<div class="tags">
-	<Badge link={`/blog/`} name={`All`} type={`${currentTag === 'blog' ? 'primary' : 'neutral'}`} />
-	{
-		tags.map((tag) => (
-			<>
-				<Badge
-					link={`/blog/tags/${tag}`}
-					name={tag}
-					type={`${currentTag === tag ? 'primary' : 'neutral'}`}
-				/>
-			</>
-		))
-	}
+<div class="mb-6">
+	<FilterButtons 
+		title="主题筛选" 
+		iconName="tag" 
+		filterType="tag" 
+		items={tags} 
+		isPrimary={true} 
+	/>
 </div>
 
-<style>
-	.tags {
-		@apply mb-6 flex flex-row flex-wrap items-center justify-start gap-2 capitalize;
+<script define:vars={{ currentTag }}>
+// 为标签导航添加点击事件和激活样式
+function initializeTagNavigation() {
+	// 获取所有标签按钮
+	const tagButtons = document.querySelectorAll('[data-filter-type="tag"]');
+	
+	// 移除所有按钮的激活样式
+	tagButtons.forEach(button => {
+		button.classList.remove('filter-active');
+	});
+	
+	// 根据当前路径设置激活按钮
+	if (currentTag === 'blog') {
+		// 如果是博客主页，激活"全部"按钮
+		const allButton = document.querySelector('[data-filter="all"][data-filter-type="tag"]');
+		if (allButton) allButton.classList.add('filter-active');
+	} else {
+		// 如果是标签页面，激活对应标签按钮
+		const activeButton = document.querySelector(`[data-filter="${currentTag}"][data-filter-type="tag"]`);
+		if (activeButton) activeButton.classList.add('filter-active');
 	}
-</style>
+	
+	// 为每个按钮添加点击事件
+	tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			const filter = button.getAttribute('data-filter');
+			if (filter === 'all') {
+				window.location.href = '/blog/';
+			} else {
+				window.location.href = `/blog/tags/${filter}`;
+			}
+		});
+	});
+}
+
+// 在页面加载完成时初始化标签导航
+document.addEventListener('DOMContentLoaded', initializeTagNavigation);
+
+// 在使用 Astro View Transitions 导航到该页面时重新初始化标签导航
+document.addEventListener('astro:after-swap', initializeTagNavigation);
+</script>

@@ -1,6 +1,7 @@
 [
 	{
 		"title": "留学前期规划",
+		"title_en": "Pre-Application Planning",
 		"stage": "Step-1",
 		"text": "携手开启您的留学梦想之旅！予果予实将为您量身定制全面的留学规划蓝图，共同为未来的精彩篇章奠定坚实基础。",
 		"services": [
@@ -14,6 +15,7 @@
 	},
 	{
 		"title": "申请材料准备",
+		"title_en": "Application Materials Preparation",
 		"stage": "Step-2",
 		"text": "精心打造您的留学申请材料，让您的故事闪耀光芒！予果予实将全程陪伴，助您创作出独具个人魅力的申请材料，让招生官过目难忘。",
 		"services": [
@@ -27,6 +29,7 @@
 	},
 	{
 		"title": "院校选择与申请提交",
+		"title_en": "School Selection & Application Submission",
 		"stage": "Step-3",
 		"text": "为您的未来找到最闪亮的舞台！予果予实将深入分析您的优势与梦想，精心挑选最匹配的院校，并确保您的申请完美无缺地送达招生官手中。",
 		"services": [
@@ -41,6 +44,7 @@
 	},
 	{
 		"title": "面试准备与录取确认",
+		"title_en": "Interview Preparation & Admission Confirmation",
 		"stage": "Step-4",
 		"text": "闪耀面试舞台，迎接梦想录取！予果予实将助您从容应对每一次面试挑战，并密切关注录取进展，确保您的留学之路畅通无阻。",
 		"services": [
@@ -54,6 +58,7 @@
 	},
 	{
 		"title": "签证办理",
+		"title_en": "Visa Application",
 		"stage": "Step-5",
 		"text": "为您的留学梦想开启绿色通道！予果予实将用专业经验和细致服务，让签证申请变得轻松简单，助您顺利踏上留学征程。",
 		"services": [
@@ -65,6 +70,7 @@
 	},
 	{
 		"title": "行前准备与入学指导",
+		"title_en": "Pre-Departure & Enrollment Guidance",
 		"stage": "Step-6",
 		"text": "开启您的精彩留学生活！予果予实将为您提供全方位的行前准备与入学支持，让您的海外生活从第一天起就充满信心与期待。",
 		"services": [
@@ -77,6 +83,7 @@
 	},
 	{
 		"title": "留学生活与持续关怀",
+		"title_en": "Overseas Life & Continuous Support",
 		"stage": "Step-7",
 		"text": "留学之路漫长而精彩，予果予实的陪伴不止于此！我们将持续为您提供温暖支持与专业指导，让您在异国他乡也能感受如家般的温暖与关怀。",
 		"services": [

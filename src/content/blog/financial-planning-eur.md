@@ -4,7 +4,7 @@ pubDate: 2025-03-03
 description: "留学是一项重要的教育投资，不同国家和地区的留学成本差异显著。本文从学费、生活费、奖学金机会和就业回报等多角度，全面分析欧洲主要留学目的地的财务状况，帮助学生和家长做出明智的财务规划。"
 author: 'EDUGROW予果予实团队'
 image: './images/financial-planning-eur.png'
-tags: ['留学财务', '留学规划', '欧洲']
+tags: ['留学财务', '申请规划', '欧洲']
 relatedPosts: ['financial-planning-ca', 'financial-planning-au', 'financial-planning-us', 'financial-planning-asia', 'value-for-money-schools-eur']
 ---
 

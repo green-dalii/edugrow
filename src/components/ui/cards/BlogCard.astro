@@ -45,13 +45,13 @@ const {
 		{image && (
 			<Image src={image} alt={title} width={600} quality="mid" class="w-full h-auto object-cover" />
 		)}
-		<CardBody>
+		<CardBody classes='!h-44'>
 			<h3 class="post-title">
 				{title}
 			</h3>
 			<h4 class="post-subtitle">{subtitle}</h4>
 			{description && (
-				<p class="mb-6 text-xs text-neutral-600 dark:text-neutral-300 line-clamp-3">
+				<p class="mb-6 text-xs text-neutral-600 dark:text-neutral-300 line-clamp-2">
 					{description}
 				</p>
 			)}
