@@ -1,0 +1,374 @@
+---
+// MermaidInit Component
+// ------------
+// Description: A component that initializes Mermaid charts after page load and view transitions
+// This component addresses the issue with astro-mermaid not properly reinitializing after view transitions
+---
+
+<script>
+  // 为window.mermaid声明类型
+  interface Window {
+    mermaid: {
+      initialize: (config: Record<string, unknown>) => void;
+      render: (id: string, content: string | null, callback?: (svg: string, bindFunctions?: (element: HTMLElement) => void) => void) => Promise<{svg: string, bindFunctions?: (element: HTMLElement) => void}>;
+    }
+    __mermaidThemeObserver?: MutationObserver;
+  }
+  
+  // 图表状态接口定义
+  interface ChartStatus {
+    total: number;
+    pluginProcessed: HTMLElement[];
+    componentProcessed: HTMLElement[];
+    unprocessed: HTMLElement[];
+  }
+  
+  // 辅助函数：获取当前主题
+  function getCurrentTheme() {
+    return document.documentElement.classList.contains('dark') ? 'dark' : 'base';
+  }
+  
+  // 辅助函数：生成唯一ID
+  function generateUniqueId(): string {
+    return `mermaid-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+  }
+
+  // 辅助函数：清理Mermaid内容中的嵌套代码块
+  function cleanMermaidContent(content: string | null, index: number): string {
+    if (!content) return '';
+    
+    const trimmed = content.trim();
+    if (trimmed.startsWith('```') && trimmed.endsWith('```')) {
+      console.warn(`图表 ${index + 1} 包含嵌套的代码块，正在清理...`);
+      return trimmed.replace(/^```(mermaid)?\n?/, '').replace(/```$/, '');
+    }
+    return content;
+  }
+
+  // 辅助函数：标记已处理的图表
+  function markProcessed(element: HTMLElement, content: string | null): void {
+    if (!element.hasAttribute('data-source') && content) {
+      element.setAttribute('data-source', content);
+    }
+    element.setAttribute('data-processed', 'true');
+  }
+
+  // 检查Mermaid图表状态并返回分类结果
+  function checkMermaidChartStatus(): ChartStatus {
+    // 获取所有Mermaid图表元素
+    const mermaidElements = document.querySelectorAll<HTMLElement>('pre.mermaid');
+    
+    if (mermaidElements.length === 0) return { total: 0, pluginProcessed: [], componentProcessed: [], unprocessed: [] };
+    
+    // 初始化分类数组
+    const pluginProcessed: HTMLElement[] = [];
+    const componentProcessed: HTMLElement[] = [];
+    const unprocessed: HTMLElement[] = [];
+    
+    // 检查每个图表的处理状态
+    mermaidElements.forEach((element) => {
+      const hasSvg = element.querySelector('svg') !== null;
+      const isProcessed = element.getAttribute('data-processed') === 'true';
+      
+      if (hasSvg && !isProcessed) {
+        // 这是由插件处理的图表，标记为已处理
+        pluginProcessed.push(element);
+        const originalContent = element.getAttribute('data-source') || element.textContent || '';
+        element.setAttribute('data-source', originalContent);
+        element.setAttribute('data-processed', 'by-plugin');
+      } else if (isProcessed) {
+        // 这是已由此组件处理的图表
+        componentProcessed.push(element);
+      } else {
+        // 未处理的图表
+        unprocessed.push(element);
+      }
+    });
+    
+    // 输出统计信息
+    console.log(`图表统计: 总计 ${mermaidElements.length} 个图表`);
+    console.log(`- 已由插件处理: ${pluginProcessed.length} 个`);
+    console.log(`- 已由组件处理: ${componentProcessed.length} 个`);
+    console.log(`- 未处理: ${unprocessed.length} 个`);
+    
+    // 返回分类结果
+    return {
+      total: mermaidElements.length,
+      pluginProcessed,
+      componentProcessed,
+      unprocessed
+    };
+  }
+  
+  // 渲染单个Mermaid图表的辅助函数
+  function renderMermaidChart(element: HTMLElement, index: number, mermaidInstance: Record<string, unknown>): boolean {
+    try {
+      // 获取图表内容
+      let content = element.textContent || '';
+      
+      // 检查内容是否为空
+      if (!content.trim()) {
+        console.log(`图表 ${index + 1} 内容为空，跳过渲染`);
+        return false;
+      }
+      
+      // 清理内容
+      content = cleanMermaidContent(content, index);
+      
+      // 生成唯一ID
+      const uniqueId = generateUniqueId();
+      console.log(`尝试渲染图表 ${index + 1} (ID: ${uniqueId})`);
+      console.log(`图表内容摘要: ${content.substring(0, 50)}${content.length > 50 ? '...' : ''}`);
+      
+      (mermaidInstance as Window['mermaid']).render(uniqueId, content)
+        .then(({ svg, bindFunctions }: {svg: string, bindFunctions?: (element: HTMLElement) => void}) => {
+          console.log(`图表 ${index + 1} 渲染成功`);
+          element.innerHTML = svg;
+          if (bindFunctions) bindFunctions(element);
+          markProcessed(element, content);
+          return true;
+        })
+        .catch((error: Error) => {
+          console.error(`图表 ${index + 1} 渲染错误:`, error);
+          console.error(`错误的图表内容: ${content.substring(0, 100)}${content.length > 100 ? '...' : ''}`);
+          element.innerHTML = `<div class="mermaid-error">图表渲染错误: ${error.message || '未知错误'}</div>`;
+          return false;
+        });
+      return true;
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : '未知错误';
+      console.error(`图表 ${index + 1} 渲染同步错误:`, error);
+      // 确保content变量在catch块中可用
+      const content = element.textContent || '';
+      console.error(`错误的图表内容: ${content.substring(0, 100)}${content.length > 100 ? '...' : ''}`);
+      element.innerHTML = `<div class="mermaid-error">图表渲染错误: ${errorMessage}</div>`;
+      return false;
+    }
+  }
+  
+  // 批量渲染Mermaid图表的辅助函数
+  function renderMermaidCharts(charts: HTMLElement[], mermaidInstance: Record<string, unknown>): number {
+    // 检查是否有图表需要渲染
+    if (!charts || charts.length === 0) {
+      console.log('没有图表需要渲染');
+      return 0;
+    }
+     
+    // 更新Mermaid配置
+    const theme = getCurrentTheme();
+    console.log(`批量渲染 ${charts.length} 个图表，使用主题: ${theme}`);
+     
+    (mermaidInstance as Window['mermaid']).initialize({
+      startOnLoad: false,
+      theme: theme,
+    });
+     
+    // 处理每个未渲染的图表
+    let successCount = 0;
+    charts.forEach((element, index) => {
+      if (renderMermaidChart(element, index, mermaidInstance)) {
+        successCount++;
+      }
+    });
+     
+    console.log(`图表渲染完成，成功: ${successCount}/${charts.length}`);
+    return successCount;
+  }
+
+  // 检查页面上是否有Mermaid图表并初始化
+  function checkAndInitMermaid(): void {
+    console.log('检查并初始化Mermaid图表...');
+    
+    // 获取图表状态
+    const status = checkMermaidChartStatus();
+    
+    // 如果没有未处理的图表，直接返回
+    if (status.unprocessed.length === 0) {
+      console.log('没有需要处理的图表，跳过初始化');
+      return;
+    }
+    
+    // 预处理：清理嵌套代码块
+    status.unprocessed.forEach((element, index) => {
+      const content = element.textContent || '';
+      if (content.trim().startsWith('```') && content.trim().endsWith('```')) {
+        const cleanContent = cleanMermaidContent(content, index);
+        element.textContent = cleanContent;
+      }
+    });
+
+    // 如果找到未处理的Mermaid图表，确保mermaid.js已加载
+    if (typeof (window as any).mermaid === 'undefined') {
+      console.log('正在动态加载mermaid.js...');
+      // 动态导入mermaid.js
+      import('mermaid').then((mermaid) => {
+        console.log('Mermaid加载成功');
+        // 批量渲染未处理的图表
+        renderMermaidCharts(status.unprocessed, mermaid.default as unknown as Record<string, unknown>);
+      }).catch((error) => {
+        console.error('加载mermaid.js失败:', error);
+        status.unprocessed.forEach(element => {
+          element.innerHTML = `<div class="mermaid-error">无法加载Mermaid库</div>`;
+        });
+      });
+    } else {
+      // Mermaid已加载，直接使用
+      console.log('Mermaid已加载，直接处理图表...');
+      // 批量渲染未处理的图表
+      renderMermaidCharts(status.unprocessed, (window as any).mermaid);
+    }
+  }
+
+  // 辅助函数：重新渲染所有Mermaid图表
+  function rerenderMermaidCharts() {
+    if (typeof (window as any).mermaid === 'undefined') return;
+    
+    const theme = getCurrentTheme();
+    console.log(`主题变化检测到，更新Mermaid主题为: ${theme}`);
+    
+    // 更新Mermaid配置
+    (window as any).mermaid.initialize({
+      startOnLoad: false,
+      theme: theme
+    });
+    
+    // 获取所有Mermaid图表
+    const mermaidElements = document.querySelectorAll('pre.mermaid');
+    console.log(`找到 ${mermaidElements.length} 个图表需要检查主题更新`);
+    
+    // 重新渲染所有图表，但避免重复处理
+    mermaidElements.forEach((element, index) => {
+      // 检查图表是否已经有SVG内容
+      const hasSvg = element.querySelector('svg') !== null;
+      
+      // 如果图表已经有SVG内容，我们需要重新渲染以更新主题
+      if (hasSvg) {
+        try {
+          // 获取图表内容 - 优先使用data-source属性存储的内容
+          let content = element.getAttribute('data-source');
+          
+          // 如果没有data-source属性，尝试使用textContent
+          if (!content) {
+            console.log(`图表 ${index + 1} 没有data-source属性，尝试使用textContent`);
+            content = element.textContent || '';
+          }
+          
+          // 检查内容是否为空
+          if (!content.trim()) {
+            console.log(`图表 ${index + 1} 内容为空，跳过渲染`);
+            return;
+          }
+          
+          // 清理内容
+          content = cleanMermaidContent(content, index);
+          
+          // 生成唯一ID并渲染
+          const uniqueId = generateUniqueId();
+          console.log(`尝试重新渲染图表 ${index + 1} (ID: ${uniqueId})`);
+          
+          (window as any).mermaid.render(uniqueId, content)
+            .then(({ svg, bindFunctions }: any) => {
+              console.log(`图表 ${index + 1} 重新渲染成功`);
+              element.innerHTML = svg;
+              if (bindFunctions) bindFunctions(element as HTMLElement);
+              markProcessed(element as HTMLElement, content);
+            })
+            .catch((error: any) => {
+              console.error(`图表 ${index + 1} 重新渲染错误:`, error);
+              console.error(`错误的图表内容: ${content.substring(0, 100)}${content.length > 100 ? '...' : ''}`);
+              element.innerHTML = `<div class="mermaid-error">图表渲染错误: ${error.message || '未知错误'}</div>`;
+            });
+        } catch (error: any) {
+          console.error(`图表 ${index + 1} 重新渲染同步错误:`, error);
+          element.innerHTML = `<div class="mermaid-error">图表渲染错误: ${error.message || '未知错误'}</div>`;
+        }
+      } else {
+        console.log(`图表 ${index + 1} 尚未渲染，标记为需要重新处理`);
+        element.removeAttribute('data-processed');
+      }
+    });
+    
+    // 处理尚未渲染的图表
+    checkAndInitMermaid();
+  }
+
+  // 监听主题变化并重新渲染Mermaid图表
+  function setupThemeChangeObserver() {
+    // 如果已经设置了观察器，不再重复设置
+    if ((window as any).__mermaidThemeObserver) {
+      console.log('主题变化观察器已存在，跳过设置');
+      return;
+    }
+    
+    console.log('设置主题变化观察器...');
+    
+    // 创建一个观察器来监视html元素的class变化
+    const observer = new MutationObserver((mutations) => {
+      // 使用some方法简化检查逻辑
+      const themeChanged = mutations.some(mutation => 
+        mutation.type === 'attributes' &&
+        mutation.attributeName === 'class' && 
+        mutation.target === document.documentElement
+      );
+      
+      if (themeChanged) {
+        console.log(`检测到主题变化: ${getCurrentTheme()}`);
+        rerenderMermaidCharts();
+      }
+    });
+    
+    // 开始观察html元素的class变化
+    observer.observe(document.documentElement, { 
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    // 保存观察器引用以避免重复设置
+    (window as any).__mermaidThemeObserver = observer;
+    
+    console.log('主题变化观察器设置完成');
+  }
+
+  // 跟踪初始化状态，避免重复初始化
+  let isInitialized = false;
+  let themeObserverSetup = false;
+  
+  // 统一处理Astro事件的函数
+  function handleAstroEvent(eventName: string): void {
+    console.log(`${eventName}事件触发`);
+    
+    // 视图转换后需要强制重新初始化
+    if (eventName === 'astro:after-swap') {
+      console.log('视图转换检测到，重置Mermaid初始化状态');
+      isInitialized = false;
+    }
+    
+    // 如果已初始化且不是视图转换后，则跳过
+    if (isInitialized && eventName !== 'astro:after-swap') {
+      console.log(`Mermaid已初始化，跳过${eventName}事件的初始化`);
+      return;
+    }
+    
+    // 使用setTimeout确保DOM完全更新
+    setTimeout(() => {
+      // 检查并初始化图表
+      checkAndInitMermaid();
+      
+      // 只在首次初始化时设置主题观察器
+      if (!themeObserverSetup) {
+        setupThemeChangeObserver();
+        themeObserverSetup = true;
+        console.log('主题观察器已设置');
+      }
+      
+      // 标记为已初始化
+      isInitialized = true;
+      console.log(`${eventName}初始化完成`);
+    }, 100);
+  }
+  
+  // 注册所有事件监听器
+  document.addEventListener('DOMContentLoaded', () => handleAstroEvent('DOMContentLoaded'));
+  document.addEventListener('astro:after-swap', () => handleAstroEvent('astro:after-swap'));
+  document.addEventListener('astro:page-load', () => handleAstroEvent('astro:page-load'));
+</script>

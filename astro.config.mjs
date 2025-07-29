@@ -15,7 +15,34 @@ export default defineConfig({
     sitemap(),
     mermaid({
       theme: 'base',
-      autoTheme: true
+      autoTheme: true,
+      mermaidConfig: {
+        // 全局主题变量设置
+        themeVariables: {
+          // 通用颜色设置
+          background: '#b8e6e3',
+          textColor: '#00151a',
+          titleColor: '#00151a',
+          // 饼图设置
+          pie1: '#00ffc3',
+          pie3: '#00baaa',
+          pie4: '#2b535e',
+          pie7: '#1e9659',
+          pieOuterStrokeWidth: '0px',
+          pieStrokeWidth: '0px',
+          pieTitleTextSize: '16px',
+          pieLegendTextSize: '12px',
+          // XY图表设置
+          xyChart: {
+            titleColor: '#00151a',
+            xAxisLabelColor: '#00151a',
+            xAxisTitleColor: '#00151a',
+            yAxisLabelColor: '#00151a',
+            yAxisTitleColor: '#00151a',
+            plotColorPalette: '#00beac,#0097b3,#006072,#008c7f,#00a99d,#007a8c'
+          }
+        }
+      }
     }),
     // 使用Partytown将第三方脚本移至Web Worker
     partytown({

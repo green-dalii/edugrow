@@ -71,17 +71,6 @@ tags: ['申请规划', '就业发展', '美洲']
 ```mermaid
 ---
 title: 2024年美国主要留学生源国留学生人数
-config:
-  theme: base
-  themeVariables:
-    background: #b8e6e3
-    xyChart:
-      titleColor: "#00151a"
-      xAxisLabelColor: "#00151a"
-      xAxisTitleColor: "#00151a"
-      yAxisLabelColor: "#00151a"
-      yAxisTitleColor: "#00151a"
-      plotColorPalette: "#00beac,#0097b3,#006072,#008c7f"
 ---
 xychart-beta horizontal
 x-axis ["印度", "中国", "韩国", "加拿大", "巴西"]
@@ -122,19 +111,6 @@ bar [422335, 329541, 61277, 46536, 44721]
 ```mermaid
 ---
 title: 2024年留美高等教育学生学位分布
-config:
-  theme: base
-  themeVariables:
-    pie1: "#00ffc3"
-    pie3: "#00baaa"
-    pie4: "#2b535e"
-    pie7: "#1e9659"
-    pieOuterStrokeWidth: 0px
-    pieStrokeWidth: 0px
-    pieTitleTextSize : 16px
-    pieLegendTextSize: 12px
-    textColor: "#00151a"
-    titleColor: "#00151a"
 ---
 pie
     "硕士学位" : 46.5
@@ -174,17 +150,6 @@ pie
 ```mermaid
 ---
 title: 2024年留美国际学生TOP10热门专业分布
-config:
-  theme: base
-  themeVariables:
-    background: #b8e6e3
-    xyChart:
-      titleColor: "#00151a"
-      xAxisLabelColor: "#00151a"
-      xAxisTitleColor: "#00151a"
-      yAxisLabelColor: "#00151a"
-      yAxisTitleColor: "#00151a"
-      plotColorPalette: "#00beac,#0097b3,#006072,#008c7f,#00a99d,#007a8c"
 ---
 xychart-beta horizontal
 x-axis ["计算机科学", "第二语言学习", "工商管理", "计算机信息科学", "管理科学", "电气电子工程", "信息技术", "管理科学与量化方法", "机械工程", "计量经济学"]

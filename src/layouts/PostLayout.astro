@@ -9,6 +9,7 @@ import Layout from './Layout.astro'
 import BlogPostHero from '../components/blocks/blog/BlogPostHero.astro'
 import TableOfContents from '../components/blocks/blog/TableOfContents.astro'
 import RelatedPosts from '../components/blocks/blog/RelatedPosts.astro'
+import MermaidInit from '../components/scripts/MermaidInit.astro'
 
 // Content
 // - SEO
@@ -42,6 +43,7 @@ const SEO = {
 		<!-- 侧边栏目录 -->
 		<TableOfContents headings={headings} />
 	</div>
+	<MermaidInit />
 </Layout>
 
 <style>
